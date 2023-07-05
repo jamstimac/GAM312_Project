@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "JamesStimac",
+			"Path": "C:\\Users\\james\\Projects\\SNHU\\GAM312\\JamesStimac\\Source\\JamesStimac.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "JamesStimacEditor",
+			"Path": "C:\\Users\\james\\Projects\\SNHU\\GAM312\\JamesStimac\\Source\\JamesStimacEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
