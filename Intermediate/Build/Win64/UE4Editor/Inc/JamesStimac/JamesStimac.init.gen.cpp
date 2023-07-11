@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimac_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x611AFD08,
+				0xD1A071F0,
 				0x17BD39CE,
 				METADATA_PARAMS(nullptr, 0)
 			};

@@ -18,16 +18,24 @@ ACameraDirector::ACameraDirector()
 void ACameraDirector::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	APlayerController* OurPlayerController = UGameplayStatics::GetPlayerController(this, 0);
+
+	// Enable input for the player Will include code to show cursor later.
+	if (OurPlayerController)
+	{
+		EnableInput(OurPlayerController);
+		// OurPlayerController->bShowMouseCursor = true;
+	}
+
+	// this will change to an input choice later currently just sets external camera as player camera.
 	NextCamera();
 	
 	// Initialize input on BeginPlay (Code following pulled from https://tinyurl.com/UnrealisticInput and https://tinyurl.com/UnrealDevForums).
-	UInputComponent* OurInputComponent = AnInputComponent;
-	// If OurInputComponent is true, bind input from Swap Camera to functs.
-	if (OurInputComponent)
+	// bind input from Swap Camera to functs.
+	if (InputComponent)
 	{
-		OurInputComponent->BindAction("CameraSwapNext", IE_Pressed, this, &ACameraDirector::NextCamera);
-		OurInputComponent->BindAction("CameraSwapPrev", IE_Pressed, this, &ACameraDirector::PreviousCamera);
+		InputComponent->BindAction("CameraSwapNext", IE_Pressed, this, &ACameraDirector::NextCamera);
+		InputComponent->BindAction("CameraSwapPrev", IE_Pressed, this, &ACameraDirector::PreviousCamera);
 	}
 }
 

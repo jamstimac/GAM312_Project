@@ -23,10 +23,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Setup for component that handles input for this actor
-	UPROPERTY()
-		class UInputComponent* AnInputComponent;
-
 	// Cameras are assigned in Unreal Editor
 	UPROPERTY(EditAnywhere, Category = Cameras)
 		AActor* CameraOne;
