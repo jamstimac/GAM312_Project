@@ -23,14 +23,27 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// Setup for component that handles input for this actor
+	UPROPERTY()
+		class UInputComponent* AnInputComponent;
+
+	// Cameras are assigned in Unreal Editor
 	UPROPERTY(EditAnywhere, Category = Cameras)
-	AActor* CameraOne;
+		AActor* CameraOne;
 
 	UPROPERTY(EditAnywhere, Category = Cameras)
-	AActor* CameraTwo;
+		AActor* CameraTwo;
+	
+	UPROPERTY(EditAnywhere, Category = Cameras)
+		AActor* CameraThree;
 
+	// sets time to smooth out transition from One camera to the next
+	const float SmoothBlendTime = 0.85f; 
 
-	float TimeToNextCameraChange;
+	// from the current camera, switch to the next camera in rotation
+	void NextCamera();
 
+	// from the current camera, switch to the previous camera in rotation
+	void PreviousCamera();
 	
 };

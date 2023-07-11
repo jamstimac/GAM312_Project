@@ -3,6 +3,7 @@
 
 #include "CameraDirector.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/Inputcomponent.h"
 
 // Sets default values
 ACameraDirector::ACameraDirector()
@@ -10,6 +11,7 @@ ACameraDirector::ACameraDirector()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	
 }
 
 // Called when the game starts or when spawned
@@ -17,43 +19,82 @@ void ACameraDirector::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	NextCamera();
+	
+	// Initialize input on BeginPlay (Code following pulled from https://tinyurl.com/UnrealisticInput and https://tinyurl.com/UnrealDevForums).
+	UInputComponent* OurInputComponent = AnInputComponent;
+	// If OurInputComponent is true, bind input from Swap Camera to functs.
+	if (OurInputComponent)
+	{
+		OurInputComponent->BindAction("CameraSwapNext", IE_Pressed, this, &ACameraDirector::NextCamera);
+		OurInputComponent->BindAction("CameraSwapPrev", IE_Pressed, this, &ACameraDirector::PreviousCamera);
+	}
 }
 
 // Called every frame
 void ACameraDirector::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+}
 
-	const float TimeBetweenCameraChange = 2.0f;
-	const float SmoothBlendTime = 0.75f; // sets time to smooth out transition from One camera to the next
+// called once at begin play to set first camera, then checks and continues to select cameraTwo or CameraThree
+void ACameraDirector::NextCamera() {
+	APlayerController* OurPlayerController = UGameplayStatics::GetPlayerController(this, 0);
 
-	TimeToNextCameraChange -= DeltaTime;
-
-	if (TimeToNextCameraChange <= 0.0f)
+	// If CameraTwo is true and Our current target is CameraOne
+	if (OurPlayerController) 
 	{
-		TimeToNextCameraChange += TimeBetweenCameraChange;
-		
-		// find the actor that handles control for the local player
-		APlayerController* OurPlayerController = UGameplayStatics::GetPlayerController(this, 0); 
-
-		// if OurPlayerController is true
-		if (OurPlayerController)
-		{
-			// both sides of this could be updated to make sure nullptrs are not used as cameras
-			// If CameraTwo is true and Our current target is CameraOne
-			if (CameraTwo && (OurPlayerController->GetViewTarget() == CameraOne))
+		// if all cameras true
+		if (CameraOne && CameraTwo && CameraThree) {
+			// if on Camera 1
+			if (OurPlayerController->GetViewTarget() == CameraOne)
 			{
 				// cut smoothly to camera 2
 				OurPlayerController->SetViewTargetWithBlend(CameraTwo, SmoothBlendTime);
 			}
-			// if CameraOne is true
-			else if (CameraOne)
+			// if on Camera 2
+			else if (OurPlayerController->GetViewTarget() == CameraTwo)
 			{
-				// instantly cut to camera 1
-				OurPlayerController->SetViewTarget(CameraOne);
+				// smoothly cut to camera 3
+				OurPlayerController->SetViewTargetWithBlend(CameraThree, SmoothBlendTime);
+			}
+			// either when not on a camera yet or when on camera 3
+			else 
+			{
+				// smoothly cut to camera 1
+				OurPlayerController->SetViewTargetWithBlend(CameraOne, SmoothBlendTime);
 			}
 		}
 	}
-
 }
 
+void ACameraDirector::PreviousCamera() {
+	APlayerController* OurPlayerController = UGameplayStatics::GetPlayerController(this, 0);
+
+	// If CameraTwo is true and Our current target is CameraOne
+	if (OurPlayerController)
+	{
+		// If all cameras true
+		if (CameraOne && CameraTwo && CameraThree) {
+			// if on CameraOne 
+			if (OurPlayerController->GetViewTarget() == CameraOne)
+			{
+				// cut smoothly to camera 3
+				OurPlayerController->SetViewTargetWithBlend(CameraThree, SmoothBlendTime);
+			}
+			// if on CameraTwo
+			else if (OurPlayerController->GetViewTarget() == CameraTwo)
+			{
+				// smoothly cut to camera 3
+				OurPlayerController->SetViewTargetWithBlend(CameraOne, SmoothBlendTime);
+			}
+			// ie. if on Camera 1
+			else
+			{
+				// smoothly cut to camera 2
+				OurPlayerController->SetViewTargetWithBlend(CameraTwo, SmoothBlendTime);
+			}
+		}
+	}
+}
