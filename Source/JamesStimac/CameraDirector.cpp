@@ -28,7 +28,7 @@ void ACameraDirector::BeginPlay()
 	}
 
 	// this will change to an input choice later currently just sets external camera as player camera.
-	NextCamera();
+	// NextCamera();
 	
 	// Initialize input on BeginPlay (Code following pulled from https://tinyurl.com/UnrealisticInput and https://tinyurl.com/UnrealDevForums).
 	// bind input from Swap Camera to functs.

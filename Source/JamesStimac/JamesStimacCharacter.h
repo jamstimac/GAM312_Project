@@ -86,8 +86,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	uint8 bUsingMotionControllers : 1;
 
+private:
+	/*Raycast function bound to a input*/
+	void DisplayRaycast();
+
 protected:
-	
+
 	/** Fires a projectile. */
 	void OnFire();
 

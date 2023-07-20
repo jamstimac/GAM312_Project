@@ -11,6 +11,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MotionControllerComponent.h"
 #include "XRMotionControllerBase.h" // for FXRMotionControllerBase::RightHandSourceId
+#include "Engine.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -113,6 +114,9 @@ void AJamesStimacCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	// set up gameplay key bindings
 	check(PlayerInputComponent);
 
+	// bind raycast event
+	PlayerInputComponent->BindAction("Raycast", IE_Pressed, this, &AJamesStimacCharacter::DisplayRaycast);
+
 	// Bind jump events
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
@@ -136,6 +140,26 @@ void AJamesStimacCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAxis("TurnRate", this, &AJamesStimacCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AJamesStimacCharacter::LookUpAtRate);
+}
+
+void AJamesStimacCharacter::DisplayRaycast() 
+{
+	// variables related to Raycast: vectors, hitresult, and collision query.
+	FHitResult* HitResult = new FHitResult();
+	FVector StartTrace = FirstPersonCameraComponent->GetComponentLocation();
+	FVector ForwardVector = FirstPersonCameraComponent->GetForwardVector();
+	FVector EndTrace = ((ForwardVector * 3319.f) + StartTrace);
+	FCollisionQueryParams* TraceParams = new FCollisionQueryParams();
+
+	if (GetWorld()->LineTraceSingleByChannel(*HitResult, StartTrace, EndTrace, ECC_Visibility, *TraceParams))
+	{
+		DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor(255, 0, 0), false, 5.f);
+
+		// BSP breaks game for some reason still trying to fix
+		GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red, FString::Printf(TEXT("You found %s"), *HitResult->GetActor()->GetName()));
+	}
+
+
 }
 
 void AJamesStimacCharacter::OnFire()
