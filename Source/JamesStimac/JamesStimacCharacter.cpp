@@ -158,15 +158,10 @@ void AJamesStimacCharacter::DisplayRaycast()
 	{
 		DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor(255, 0, 0), false, 5.f);
 
-		// BSP breaks game for some reason still trying to fix
-		if (HitResult != nullptr) {
+		if (HitResult != nullptr && !HitResult->GetActor()->GetName().Contains(TEXT("P"))) {
 
 			GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red, FString::Printf(TEXT("You found %s"), *HitResult->GetActor()->GetName()));
 		}
-		/*else
-		{
-				GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red, FString::Printf(TEXT("This item is not in the catalog...")));
-		} // end HitResult if */
 	} // end LineTrace if
 }
 

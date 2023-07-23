@@ -1,0 +1,3 @@
+C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\Definitions.JamesStimac.h
+C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Source\JamesStimac\OnHitEvent_GameExplanation.h
+C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Inc\JamesStimac\OnHitEvent_GameExplanation.generated.h

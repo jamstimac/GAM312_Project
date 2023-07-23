@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\JamesStimac.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{1C49F069-E507-4EFC-B2B6-2CE40AF7A354}</UniqueIdentifier>
+      <UniqueIdentifier>{DB9764D8-7F0F-4817-96F4-12C03C51EA1B}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\JamesStimac.Target.cs">
       <Filter>Source</Filter>
@@ -16,7 +16,7 @@
     <None Include="..\..\LICENSE" />
     <None Include="..\..\README.md" />
     <Filter Include="Config">
-      <UniqueIdentifier>{7CEC7309-B03B-4B88-886D-7BB670072774}</UniqueIdentifier>
+      <UniqueIdentifier>{412D2FD5-3C4B-41E3-A400-AA5BFE2B72CA}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -34,7 +34,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\JamesStimac">
-      <UniqueIdentifier>{62A43AB9-A78F-4631-AB6E-C4E265886750}</UniqueIdentifier>
+      <UniqueIdentifier>{A678DD71-76E2-4E6D-A959-E6E69CE20B19}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\JamesStimac\CameraDirector.cpp">
       <Filter>Source\JamesStimac</Filter>
@@ -73,6 +73,18 @@
       <Filter>Source\JamesStimac</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\JamesStimac\JamesStimacProjectile.h">
+      <Filter>Source\JamesStimac</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\JamesStimac\OnHitEventActor_GameExplanation.cpp">
+      <Filter>Source\JamesStimac</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\JamesStimac\OnHitEventActor_GameExplanation.h">
+      <Filter>Source\JamesStimac</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\JamesStimac\WorgrootActor.cpp">
+      <Filter>Source\JamesStimac</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\JamesStimac\WorgrootActor.h">
       <Filter>Source\JamesStimac</Filter>
     </ClInclude>
   </ItemGroup>
