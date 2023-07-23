@@ -142,7 +142,10 @@ void AJamesStimacCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AJamesStimacCharacter::LookUpAtRate);
 }
 
-void AJamesStimacCharacter::DisplayRaycast() 
+///////////////////////////////////////////////////////////////////////////
+// AJamesStimacCharacter::functions()
+
+void AJamesStimacCharacter::DisplayRaycast()
 {
 	// variables related to Raycast: vectors, hitresult, and collision query.
 	FHitResult* HitResult = new FHitResult();
@@ -156,10 +159,15 @@ void AJamesStimacCharacter::DisplayRaycast()
 		DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor(255, 0, 0), false, 5.f);
 
 		// BSP breaks game for some reason still trying to fix
-		GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red, FString::Printf(TEXT("You found %s"), *HitResult->GetActor()->GetName()));
-	}
+		if (HitResult != nullptr) {
 
-
+			GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red, FString::Printf(TEXT("You found %s"), *HitResult->GetActor()->GetName()));
+		}
+		/*else
+		{
+				GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red, FString::Printf(TEXT("This item is not in the catalog...")));
+		} // end HitResult if */
+	} // end LineTrace if
 }
 
 void AJamesStimacCharacter::OnFire()
