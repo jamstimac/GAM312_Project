@@ -8,14 +8,26 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UPrimitiveComponent;
+class AActor;
+struct FVector;
+struct FHitResult;
 #ifdef JAMESSTIMAC_OnHitEventActor_GameExplanation_generated_h
 #error "OnHitEventActor_GameExplanation.generated.h already included, missing '#pragma once' in OnHitEventActor_GameExplanation.h"
 #endif
 #define JAMESSTIMAC_OnHitEventActor_GameExplanation_generated_h
 
 #define JamesStimac_Source_JamesStimac_OnHitEventActor_GameExplanation_h_12_SPARSE_DATA
-#define JamesStimac_Source_JamesStimac_OnHitEventActor_GameExplanation_h_12_RPC_WRAPPERS
-#define JamesStimac_Source_JamesStimac_OnHitEventActor_GameExplanation_h_12_RPC_WRAPPERS_NO_PURE_DECLS
+#define JamesStimac_Source_JamesStimac_OnHitEventActor_GameExplanation_h_12_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execOnCompHit);
+
+
+#define JamesStimac_Source_JamesStimac_OnHitEventActor_GameExplanation_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execOnCompHit);
+
+
 #define JamesStimac_Source_JamesStimac_OnHitEventActor_GameExplanation_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAOnHitEventActor_GameExplanation(); \

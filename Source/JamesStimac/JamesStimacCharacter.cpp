@@ -20,6 +20,11 @@ DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
 AJamesStimacCharacter::AJamesStimacCharacter()
 {
+	// set herb counts
+	WorgrootCount = 0;
+	ElfsearCount = 0;
+	HollybellCount = 0;
+
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
@@ -47,7 +52,7 @@ AJamesStimacCharacter::AJamesStimacCharacter()
 	FP_Gun->SetOnlyOwnerSee(false);			// otherwise won't be visible in the multiplayer
 	FP_Gun->bCastDynamicShadow = false;
 	FP_Gun->CastShadow = false;
-	// FP_Gun->SetupAttachment(Mesh1P, TEXT("GripPoint"));
+	 FP_Gun->SetupAttachment(Mesh1P, TEXT("GripPoint"));
 	FP_Gun->SetupAttachment(RootComponent);
 
 	FP_MuzzleLocation = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzleLocation"));
@@ -82,7 +87,7 @@ AJamesStimacCharacter::AJamesStimacCharacter()
 	VR_MuzzleLocation->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));		// Counteract the rotation of the VR gun model.
 
 	// Uncomment the following line to turn motion controllers on by default:
-	//bUsingMotionControllers = true;
+	bUsingMotionControllers = true;
 }
 
 void AJamesStimacCharacter::BeginPlay()
@@ -122,7 +127,7 @@ void AJamesStimacCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	// Bind fire event
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AJamesStimacCharacter::OnFire);
+	/*PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AJamesStimacCharacter::OnFire);*/
 
 	// Enable touchscreen input
 	EnableTouchscreenMovement(PlayerInputComponent);

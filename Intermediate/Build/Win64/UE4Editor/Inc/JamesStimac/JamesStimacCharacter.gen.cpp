@@ -18,7 +18,6 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_JamesStimac();
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
-	ENGINE_API UClass* Z_Construct_UClass_USceneComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	HEADMOUNTEDDISPLAY_API UClass* Z_Construct_UClass_UMotionControllerComponent_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
@@ -44,22 +43,6 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Mesh1P_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Mesh1P;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_FP_Gun_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_FP_Gun;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_FP_MuzzleLocation_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_FP_MuzzleLocation;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_VR_Gun_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_VR_Gun;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_VR_MuzzleLocation_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_VR_MuzzleLocation;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_FirstPersonCameraComponent_MetaData[];
 #endif
@@ -101,6 +84,18 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 #endif
 		static void NewProp_bUsingMotionControllers_SetBit(void* Obj);
 		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bUsingMotionControllers;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_WorgrootCount_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_WorgrootCount;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ElfsearCount_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_ElfsearCount;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HollybellCount_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_HollybellCount;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -126,46 +121,6 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Mesh1P = { "Mesh1P", nullptr, (EPropertyFlags)0x00400000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, Mesh1P), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Mesh1P_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Mesh1P_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun_MetaData[] = {
-		{ "Category", "Mesh" },
-		{ "Comment", "/** Gun mesh: 1st person view (seen only by self) */" },
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
-		{ "ToolTip", "Gun mesh: 1st person view (seen only by self)" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun = { "FP_Gun", nullptr, (EPropertyFlags)0x00400000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FP_Gun), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation_MetaData[] = {
-		{ "Category", "Mesh" },
-		{ "Comment", "/** Location on gun mesh where projectiles should spawn. */" },
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
-		{ "ToolTip", "Location on gun mesh where projectiles should spawn." },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation = { "FP_MuzzleLocation", nullptr, (EPropertyFlags)0x00400000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FP_MuzzleLocation), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun_MetaData[] = {
-		{ "Category", "Mesh" },
-		{ "Comment", "/** Gun mesh: VR view (attached to the VR controller directly, no arm, just the actual gun) */" },
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
-		{ "ToolTip", "Gun mesh: VR view (attached to the VR controller directly, no arm, just the actual gun)" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun = { "VR_Gun", nullptr, (EPropertyFlags)0x00400000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, VR_Gun), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation_MetaData[] = {
-		{ "Category", "Mesh" },
-		{ "Comment", "/** Location on VR gun mesh where projectiles should spawn. */" },
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
-		{ "ToolTip", "Location on VR gun mesh where projectiles should spawn." },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation = { "VR_MuzzleLocation", nullptr, (EPropertyFlags)0x00400000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, VR_MuzzleLocation), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FirstPersonCameraComponent_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
@@ -266,12 +221,35 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		((AJamesStimacCharacter*)Obj)->bUsingMotionControllers = 1;
 	}
 	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_bUsingMotionControllers = { "bUsingMotionControllers", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool , RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(uint8), sizeof(AJamesStimacCharacter), &Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_bUsingMotionControllers_SetBit, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_bUsingMotionControllers_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_bUsingMotionControllers_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_WorgrootCount_MetaData[] = {
+		{ "Category", "HerbCount" },
+		{ "Comment", "/** How many of Worgroot are acquired **/" },
+		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
+		{ "ToolTip", "How many of Worgroot are acquired *" },
+	};
+#endif
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_WorgrootCount = { "WorgrootCount", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, WorgrootCount), nullptr, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_WorgrootCount_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_WorgrootCount_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_ElfsearCount_MetaData[] = {
+		{ "Category", "HerbCount" },
+		{ "Comment", "/** How many of Elfear are acquired **/" },
+		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
+		{ "ToolTip", "How many of Elfear are acquired *" },
+	};
+#endif
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_ElfsearCount = { "ElfsearCount", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, ElfsearCount), nullptr, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_ElfsearCount_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_ElfsearCount_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HollybellCount_MetaData[] = {
+		{ "Category", "HerbCount" },
+		{ "Comment", "/** How many of Hollybell are acquired **/" },
+		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
+		{ "ToolTip", "How many of Hollybell are acquired *" },
+	};
+#endif
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HollybellCount = { "HollybellCount", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, HollybellCount), nullptr, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HollybellCount_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HollybellCount_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AJamesStimacCharacter_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Mesh1P,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FirstPersonCameraComponent,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_R_MotionController,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_L_MotionController,
@@ -282,6 +260,9 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FireSound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FireAnimation,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_bUsingMotionControllers,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_WorgrootCount,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_ElfsearCount,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HollybellCount,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AJamesStimacCharacter_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AJamesStimacCharacter>::IsAbstract,
@@ -310,7 +291,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AJamesStimacCharacter, 1754981969);
+	IMPLEMENT_CLASS(AJamesStimacCharacter, 3831580295);
 	template<> JAMESSTIMAC_API UClass* StaticClass<AJamesStimacCharacter>()
 	{
 		return AJamesStimacCharacter::StaticClass();

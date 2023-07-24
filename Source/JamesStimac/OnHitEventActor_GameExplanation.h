@@ -23,4 +23,13 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// CollisionComponent
+	UPROPERTY(VisibleAnywhere)
+		class UBoxComponent* MyComp;
+
+	// OnHit between this comp and another actor with a comp, print a message to the screen.
+	UFUNCTION()
+		void OnCompHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* otherComp, FVector NormalImpulse , const FHitResult& Hit);
+
+
 };
