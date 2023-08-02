@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\JamesStimac.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{312A7667-9824-4330-954B-4CBC2D19E3A2}</UniqueIdentifier>
+      <UniqueIdentifier>{ED7209B9-2E20-45CE-B8DA-C0EC308C7370}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\JamesStimac.Target.cs">
       <Filter>Source</Filter>
@@ -15,31 +15,19 @@
     <None Include="..\..\.gitignore" />
     <None Include="..\..\LICENSE" />
     <None Include="..\..\README.md" />
-    <Filter Include="Config">
-      <UniqueIdentifier>{A5B7B150-0EF3-45D5-803F-206EFC26C7AB}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Config\DefaultEditor.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultEngine.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultGame.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultInput.ini">
-      <Filter>Config</Filter>
-    </None>
     <Filter Include="Source\JamesStimac">
-      <UniqueIdentifier>{21585C8B-52C5-4B03-86A3-9AB29E8B174D}</UniqueIdentifier>
+      <UniqueIdentifier>{9FD7E3A6-E69F-47C2-81BC-4D0930D30A32}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\JamesStimac\CameraDirector.cpp">
       <Filter>Source\JamesStimac</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\JamesStimac\CameraDirector.h">
+      <Filter>Source\JamesStimac</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\JamesStimac\HerbActor.cpp">
+      <Filter>Source\JamesStimac</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\JamesStimac\HerbActor.h">
       <Filter>Source\JamesStimac</Filter>
     </ClInclude>
     <None Include="..\..\Source\JamesStimac\JamesStimac.Build.cs">
@@ -85,12 +73,6 @@
       <Filter>Source\JamesStimac</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\JamesStimac\OnHitEventActor_GameExplanation.h">
-      <Filter>Source\JamesStimac</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\JamesStimac\HerbActor.cpp">
-      <Filter>Source\JamesStimac</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\JamesStimac\HerbActor.h">
       <Filter>Source\JamesStimac</Filter>
     </ClInclude>
   </ItemGroup>

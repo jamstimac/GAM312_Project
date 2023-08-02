@@ -33,3 +33,10 @@
 *.db
 *.ipch
 .vs/JamesStimac/v16/.suo
+.vs/JamesStimac/v15/.suo
+.vs/JamesStimac/v15/.suo
+.vs/JamesStimac/v15/.suo
+.vs/JamesStimac/v15/.suo
+*.db-shm
+*.db-wal
+*.opendb

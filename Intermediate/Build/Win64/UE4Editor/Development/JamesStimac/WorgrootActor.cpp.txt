@@ -1,3 +1,0 @@
-C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\Definitions.JamesStimac.h
-C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Source\JamesStimac\WorgrootActor.h
-C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Inc\JamesStimac\WorgrootActor.generated.h

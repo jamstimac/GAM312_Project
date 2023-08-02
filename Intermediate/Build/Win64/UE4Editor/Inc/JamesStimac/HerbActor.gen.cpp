@@ -37,7 +37,7 @@ void EmptyLinkFunctionForGeneratedCodeHerbActor() {}
 		P_THIS->PickUp();
 		P_NATIVE_END;
 	}
-	DEFINE_FUNCTION(AHerbActor::execOnOverlapEnd)
+	DEFINE_FUNCTION(AHerbActor::execOnOverlapEndIncrement)
 	{
 		P_GET_OBJECT(UPrimitiveComponent,Z_Param_OverlappedComp);
 		P_GET_OBJECT(AActor,Z_Param_OtherActor);
@@ -45,7 +45,7 @@ void EmptyLinkFunctionForGeneratedCodeHerbActor() {}
 		P_GET_PROPERTY(FIntProperty,Z_Param_OtherBodyIndex);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->OnOverlapEnd(Z_Param_OverlappedComp,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_OtherBodyIndex);
+		P_THIS->OnOverlapEndIncrement(Z_Param_OverlappedComp,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_OtherBodyIndex);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(AHerbActor::execOnOverlapBeginCanPickUp)
@@ -67,7 +67,7 @@ void EmptyLinkFunctionForGeneratedCodeHerbActor() {}
 		static const FNameNativePtrPair Funcs[] = {
 			{ "IncrementCharacterHerbCount", &AHerbActor::execIncrementCharacterHerbCount },
 			{ "OnOverlapBeginCanPickUp", &AHerbActor::execOnOverlapBeginCanPickUp },
-			{ "OnOverlapEnd", &AHerbActor::execOnOverlapEnd },
+			{ "OnOverlapEndIncrement", &AHerbActor::execOnOverlapEndIncrement },
 			{ "PickUp", &AHerbActor::execPickUp },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -189,9 +189,9 @@ void EmptyLinkFunctionForGeneratedCodeHerbActor() {}
 		}
 		return ReturnFunction;
 	}
-	struct Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics
+	struct Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics
 	{
-		struct HerbActor_eventOnOverlapEnd_Parms
+		struct HerbActor_eventOnOverlapEndIncrement_Parms
 		{
 			UPrimitiveComponent* OverlappedComp;
 			AActor* OtherActor;
@@ -215,37 +215,37 @@ void EmptyLinkFunctionForGeneratedCodeHerbActor() {}
 		static const UE4CodeGen_Private::FFunctionParams FuncParams;
 	};
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OverlappedComp_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OverlappedComp_MetaData[] = {
 		{ "EditInline", "true" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OverlappedComp = { "OverlappedComp", nullptr, (EPropertyFlags)0x0010000000080080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HerbActor_eventOnOverlapEnd_Parms, OverlappedComp), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OverlappedComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OverlappedComp_MetaData)) };
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OtherActor = { "OtherActor", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HerbActor_eventOnOverlapEnd_Parms, OtherActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OverlappedComp = { "OverlappedComp", nullptr, (EPropertyFlags)0x0010000000080080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HerbActor_eventOnOverlapEndIncrement_Parms, OverlappedComp), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OverlappedComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OverlappedComp_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OtherActor = { "OtherActor", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HerbActor_eventOnOverlapEndIncrement_Parms, OtherActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OtherComp_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OtherComp_MetaData[] = {
 		{ "EditInline", "true" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OtherComp = { "OtherComp", nullptr, (EPropertyFlags)0x0010000000080080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HerbActor_eventOnOverlapEnd_Parms, OtherComp), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OtherComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OtherComp_MetaData)) };
-	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OtherBodyIndex = { "OtherBodyIndex", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HerbActor_eventOnOverlapEnd_Parms, OtherBodyIndex), METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OverlappedComp,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OtherActor,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OtherComp,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::NewProp_OtherBodyIndex,
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OtherComp = { "OtherComp", nullptr, (EPropertyFlags)0x0010000000080080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HerbActor_eventOnOverlapEndIncrement_Parms, OtherComp), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OtherComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OtherComp_MetaData)) };
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OtherBodyIndex = { "OtherBodyIndex", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HerbActor_eventOnOverlapEndIncrement_Parms, OtherBodyIndex), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OverlappedComp,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OtherActor,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OtherComp,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::NewProp_OtherBodyIndex,
 	};
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::Function_MetaDataParams[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::Function_MetaDataParams[] = {
 		{ "ModuleRelativePath", "HerbActor.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AHerbActor, nullptr, "OnOverlapEnd", nullptr, nullptr, sizeof(HerbActor_eventOnOverlapEnd_Parms), Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AHerbActor_OnOverlapEnd()
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AHerbActor, nullptr, "OnOverlapEndIncrement", nullptr, nullptr, sizeof(HerbActor_eventOnOverlapEndIncrement_Parms), Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AHerbActor_OnOverlapEnd_Statics::FuncParams);
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -303,7 +303,7 @@ void EmptyLinkFunctionForGeneratedCodeHerbActor() {}
 	const FClassFunctionLinkInfo Z_Construct_UClass_AHerbActor_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_AHerbActor_IncrementCharacterHerbCount, "IncrementCharacterHerbCount" }, // 3504077637
 		{ &Z_Construct_UFunction_AHerbActor_OnOverlapBeginCanPickUp, "OnOverlapBeginCanPickUp" }, // 1954966136
-		{ &Z_Construct_UFunction_AHerbActor_OnOverlapEnd, "OnOverlapEnd" }, // 4149624136
+		{ &Z_Construct_UFunction_AHerbActor_OnOverlapEndIncrement, "OnOverlapEndIncrement" }, // 1868132892
 		{ &Z_Construct_UFunction_AHerbActor_PickUp, "PickUp" }, // 500561827
 	};
 #if WITH_METADATA
@@ -362,7 +362,7 @@ void EmptyLinkFunctionForGeneratedCodeHerbActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHerbActor, 1002708634);
+	IMPLEMENT_CLASS(AHerbActor, 3628722800);
 	template<> JAMESSTIMAC_API UClass* StaticClass<AHerbActor>()
 	{
 		return AHerbActor::StaticClass();

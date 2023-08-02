@@ -21,7 +21,7 @@ struct FHitResult;
  \
 	DECLARE_FUNCTION(execIncrementCharacterHerbCount); \
 	DECLARE_FUNCTION(execPickUp); \
-	DECLARE_FUNCTION(execOnOverlapEnd); \
+	DECLARE_FUNCTION(execOnOverlapEndIncrement); \
 	DECLARE_FUNCTION(execOnOverlapBeginCanPickUp);
 
 
@@ -29,7 +29,7 @@ struct FHitResult;
  \
 	DECLARE_FUNCTION(execIncrementCharacterHerbCount); \
 	DECLARE_FUNCTION(execPickUp); \
-	DECLARE_FUNCTION(execOnOverlapEnd); \
+	DECLARE_FUNCTION(execOnOverlapEndIncrement); \
 	DECLARE_FUNCTION(execOnOverlapBeginCanPickUp);
 
 

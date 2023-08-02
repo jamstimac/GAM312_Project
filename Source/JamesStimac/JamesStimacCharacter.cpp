@@ -156,14 +156,16 @@ void AJamesStimacCharacter::DisplayRaycast()
 	FHitResult* HitResult = new FHitResult();
 	FVector StartTrace = FirstPersonCameraComponent->GetComponentLocation();
 	FVector ForwardVector = FirstPersonCameraComponent->GetForwardVector();
-	FVector EndTrace = ((ForwardVector * 3319.f) + StartTrace);
+	FVector EndTrace = ((ForwardVector * 500.f) + StartTrace);
+	float SphereRadius = 10.f;
+	int32 SphereSegments = 32;
 	FCollisionQueryParams* TraceParams = new FCollisionQueryParams();
 
 	if (GetWorld()->LineTraceSingleByChannel(*HitResult, StartTrace, EndTrace, ECC_Visibility, *TraceParams))
 	{
-		DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor(255, 0, 0), false, 5.f);
+		DrawDebugSphere(GetWorld(), HitResult->Location, SphereRadius, SphereSegments, FColor(255, 0, 0), false, 5.f);
 
-		if (HitResult != nullptr && !HitResult->GetActor()->GetName().Contains(TEXT("P"))) {
+		if (HitResult != nullptr) {
 
 			GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red, FString::Printf(TEXT("You found %s"), *HitResult->GetActor()->GetName()));
 		}
