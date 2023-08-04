@@ -110,9 +110,9 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 #endif
 		static const UE4CodeGen_Private::FBytePropertyParams NewProp_ElfsearCount;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HollybellCount_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BellhollyCount_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FBytePropertyParams NewProp_HollybellCount;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_BellhollyCount;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -297,14 +297,14 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 #endif
 	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_ElfsearCount = { "ElfsearCount", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, ElfsearCount), nullptr, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_ElfsearCount_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_ElfsearCount_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HollybellCount_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_BellhollyCount_MetaData[] = {
 		{ "Category", "HerbCount" },
 		{ "Comment", "/** How many of Hollybell are acquired **/" },
 		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
 		{ "ToolTip", "How many of Hollybell are acquired *" },
 	};
 #endif
-	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HollybellCount = { "HollybellCount", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, HollybellCount), nullptr, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HollybellCount_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HollybellCount_MetaData)) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_BellhollyCount = { "BellhollyCount", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, BellhollyCount), nullptr, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_BellhollyCount_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_BellhollyCount_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AJamesStimacCharacter_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Mesh1P,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun,
@@ -323,7 +323,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_bUsingMotionControllers,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_WorgrootCount,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_ElfsearCount,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HollybellCount,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_BellhollyCount,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AJamesStimacCharacter_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AJamesStimacCharacter>::IsAbstract,
@@ -352,7 +352,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AJamesStimacCharacter, 50776688);
+	IMPLEMENT_CLASS(AJamesStimacCharacter, 4204004608);
 	template<> JAMESSTIMAC_API UClass* StaticClass<AJamesStimacCharacter>()
 	{
 		return AJamesStimacCharacter::StaticClass();

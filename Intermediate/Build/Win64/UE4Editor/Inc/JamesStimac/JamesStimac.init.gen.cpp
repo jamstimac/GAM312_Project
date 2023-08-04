@@ -21,8 +21,8 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimac_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x7A1E3ED3,
-				0x3C152247,
+				0x929F60E9,
+				0x3FC761C2,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UE4CodeGen_Private::ConstructUPackage(ReturnPackage, PackageParams);

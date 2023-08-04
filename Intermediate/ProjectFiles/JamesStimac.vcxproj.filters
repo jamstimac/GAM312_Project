@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\JamesStimac.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{ED7209B9-2E20-45CE-B8DA-C0EC308C7370}</UniqueIdentifier>
+      <UniqueIdentifier>{5BE5BEF0-E423-4980-BFB6-A41DF401DE4D}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\JamesStimac.Target.cs">
       <Filter>Source</Filter>
@@ -15,19 +15,37 @@
     <None Include="..\..\.gitignore" />
     <None Include="..\..\LICENSE" />
     <None Include="..\..\README.md" />
-    <Filter Include="Source\JamesStimac">
-      <UniqueIdentifier>{9FD7E3A6-E69F-47C2-81BC-4D0930D30A32}</UniqueIdentifier>
+    <Filter Include="Config">
+      <UniqueIdentifier>{A6BC9743-9BA2-4DE3-A45E-19E01016336B}</UniqueIdentifier>
     </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\JamesStimac">
+      <UniqueIdentifier>{50485D9C-B287-457E-9F51-80C855C451F8}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\JamesStimac\BellhollyActor.cpp">
+      <Filter>Source\JamesStimac</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\JamesStimac\BellhollyActor.h">
+      <Filter>Source\JamesStimac</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\JamesStimac\CameraDirector.cpp">
       <Filter>Source\JamesStimac</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\JamesStimac\CameraDirector.h">
       <Filter>Source\JamesStimac</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\JamesStimac\HerbActor.cpp">
+    <ClCompile Include="..\..\Source\JamesStimac\ElfsearActor.cpp">
       <Filter>Source\JamesStimac</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\JamesStimac\HerbActor.h">
+    <ClInclude Include="..\..\Source\JamesStimac\ElfsearActor.h">
       <Filter>Source\JamesStimac</Filter>
     </ClInclude>
     <None Include="..\..\Source\JamesStimac\JamesStimac.Build.cs">
@@ -73,6 +91,18 @@
       <Filter>Source\JamesStimac</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\JamesStimac\OnHitEventActor_GameExplanation.h">
+      <Filter>Source\JamesStimac</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\JamesStimac\StorytellerCrowAIController.cpp">
+      <Filter>Source\JamesStimac</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\JamesStimac\StorytellerCrowAIController.h">
+      <Filter>Source\JamesStimac</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\JamesStimac\WorgrootActor.cpp">
+      <Filter>Source\JamesStimac</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\JamesStimac\WorgrootActor.h">
       <Filter>Source\JamesStimac</Filter>
     </ClInclude>
   </ItemGroup>

@@ -97,7 +97,7 @@ public:
 
 	/** How many of Hollybell are acquired **/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HerbCount")
-		uint8 HollybellCount;
+		uint8 BellhollyCount;
 
 private:
 	/*Raycast function bound to a input*/

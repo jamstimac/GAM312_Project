@@ -23,7 +23,7 @@ AJamesStimacCharacter::AJamesStimacCharacter()
 	// set herb counts
 	WorgrootCount = 0;
 	ElfsearCount = 0;
-	HollybellCount = 0;
+	BellhollyCount = 0;
 
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
