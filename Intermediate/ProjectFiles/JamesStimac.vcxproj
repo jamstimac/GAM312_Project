@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F862ED32-D6D3-45BF-A8F3-2EB60683F92E}</ProjectGuid>
+    <ProjectGuid>{D212515D-72F4-4592-BFB2-CB7CCA615C94}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
     <RootNamespace>JamesStimac</RootNamespace>
     <PlatformToolset>v142</PlatformToolset>

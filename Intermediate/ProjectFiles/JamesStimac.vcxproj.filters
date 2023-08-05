@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\JamesStimac.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{5BE5BEF0-E423-4980-BFB6-A41DF401DE4D}</UniqueIdentifier>
+      <UniqueIdentifier>{B7F5CD81-9322-4741-AA0E-2027906A4632}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\JamesStimac.Target.cs">
       <Filter>Source</Filter>
@@ -16,7 +16,7 @@
     <None Include="..\..\LICENSE" />
     <None Include="..\..\README.md" />
     <Filter Include="Config">
-      <UniqueIdentifier>{A6BC9743-9BA2-4DE3-A45E-19E01016336B}</UniqueIdentifier>
+      <UniqueIdentifier>{53260D65-FC65-4C8F-93D0-260C7F34FEC8}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -28,7 +28,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\JamesStimac">
-      <UniqueIdentifier>{50485D9C-B287-457E-9F51-80C855C451F8}</UniqueIdentifier>
+      <UniqueIdentifier>{A3643216-B3BA-4D93-B395-44F6E4F2C24D}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\JamesStimac\BellhollyActor.cpp">
       <Filter>Source\JamesStimac</Filter>
