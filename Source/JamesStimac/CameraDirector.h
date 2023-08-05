@@ -33,6 +33,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = Cameras)
 		AActor* CameraThree;
 
+	UPROPERTY()
+		AActor* PlayerCamera;
+
 	// sets time to smooth out transition from One camera to the next
 	const float SmoothBlendTime = 0.85f; 
 
@@ -41,5 +44,9 @@ public:
 
 	// from the current camera, switch to the previous camera in rotation
 	void PreviousCamera();
+
+	// leave these viewports
+	void LeaveCameraDirector();
+
 	
 };

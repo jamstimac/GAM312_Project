@@ -20,6 +20,11 @@ DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
 AJamesStimacCharacter::AJamesStimacCharacter()
 {
+	// set herb counts
+	WorgrootCount = 0;
+	ElfsearCount = 0;
+	BellhollyCount = 0;
+
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
@@ -47,7 +52,7 @@ AJamesStimacCharacter::AJamesStimacCharacter()
 	FP_Gun->SetOnlyOwnerSee(false);			// otherwise won't be visible in the multiplayer
 	FP_Gun->bCastDynamicShadow = false;
 	FP_Gun->CastShadow = false;
-	// FP_Gun->SetupAttachment(Mesh1P, TEXT("GripPoint"));
+	 FP_Gun->SetupAttachment(Mesh1P, TEXT("GripPoint"));
 	FP_Gun->SetupAttachment(RootComponent);
 
 	FP_MuzzleLocation = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzleLocation"));
@@ -82,7 +87,7 @@ AJamesStimacCharacter::AJamesStimacCharacter()
 	VR_MuzzleLocation->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));		// Counteract the rotation of the VR gun model.
 
 	// Uncomment the following line to turn motion controllers on by default:
-	//bUsingMotionControllers = true;
+	bUsingMotionControllers = true;
 }
 
 void AJamesStimacCharacter::BeginPlay()
@@ -122,7 +127,7 @@ void AJamesStimacCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	// Bind fire event
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AJamesStimacCharacter::OnFire);
+	/*PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AJamesStimacCharacter::OnFire);*/
 
 	// Enable touchscreen input
 	EnableTouchscreenMovement(PlayerInputComponent);
@@ -142,24 +147,29 @@ void AJamesStimacCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AJamesStimacCharacter::LookUpAtRate);
 }
 
-void AJamesStimacCharacter::DisplayRaycast() 
+///////////////////////////////////////////////////////////////////////////
+// AJamesStimacCharacter::functions()
+
+void AJamesStimacCharacter::DisplayRaycast()
 {
 	// variables related to Raycast: vectors, hitresult, and collision query.
 	FHitResult* HitResult = new FHitResult();
 	FVector StartTrace = FirstPersonCameraComponent->GetComponentLocation();
 	FVector ForwardVector = FirstPersonCameraComponent->GetForwardVector();
-	FVector EndTrace = ((ForwardVector * 3319.f) + StartTrace);
+	FVector EndTrace = ((ForwardVector * 500.f) + StartTrace);
+	float SphereRadius = 10.f;
+	int32 SphereSegments = 32;
 	FCollisionQueryParams* TraceParams = new FCollisionQueryParams();
 
 	if (GetWorld()->LineTraceSingleByChannel(*HitResult, StartTrace, EndTrace, ECC_Visibility, *TraceParams))
 	{
-		DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor(255, 0, 0), false, 5.f);
+		DrawDebugSphere(GetWorld(), HitResult->Location, SphereRadius, SphereSegments, FColor(255, 0, 0), false, 5.f);
 
-		// BSP breaks game for some reason still trying to fix
-		GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red, FString::Printf(TEXT("You found %s"), *HitResult->GetActor()->GetName()));
-	}
+		if (HitResult != nullptr) {
 
-
+			GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red, FString::Printf(TEXT("You found %s"), *HitResult->GetActor()->GetName()));
+		}
+	} // end LineTrace if
 }
 
 void AJamesStimacCharacter::OnFire()

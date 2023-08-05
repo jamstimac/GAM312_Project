@@ -5,13 +5,16 @@
 #include "Kismet/GameplayStatics.h"
 #include "JamesStimacCharacter.h"
 
+
 /* base FVectors for character location checks*/
 // If player moves past x value of post move to waypoint 1
 const float MoveAICheck1X = 1105.f;
 
 // to move from waypoint 1 to 2 check if player has moved past these locations
+
 const float MoveAICheck2X = -300.f;
 const float MoveAICheck2Y = 2000.f;
+
 
 
 void AStorytellerCrowAIController::BeginPlay()
@@ -21,6 +24,7 @@ void AStorytellerCrowAIController::BeginPlay()
 	// if world != nullptr
 	if (GetWorld())
 	{
+
 		// get all waypoints
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), ATargetPoint::StaticClass(), Waypoints);
 		uint8 i = 0;
@@ -37,12 +41,13 @@ void AStorytellerCrowAIController::BeginPlay()
 	bCanMoveToWPOne = true;
 	bCanMoveToWPTwo = true;
 	bReturnedToStart = false;
+		
 
-	// set current waypoint to first and move there
-	OurCurrentWaypoint = Waypoints[0];
-	GoToNextWaypoint(GetNextWaypoint(OurCurrentWaypoint));
-
+		OurCurrentWaypoint = Waypoints[0];
+		GoToNextWaypoint(GetNextWaypoint(OurCurrentWaypoint));
+		MoveToActor(Cast<ATargetPoint>(OurCurrentWaypoint));
 }
+
 
 void AStorytellerCrowAIController::Tick(float DeltaTime)
 {
@@ -74,6 +79,7 @@ void AStorytellerCrowAIController::Tick(float DeltaTime)
 			
 		}
 	}
+
 }
 
 // Get the next waypoint for AI movement if player moves to new location
@@ -136,6 +142,12 @@ ATargetPoint* AStorytellerCrowAIController::GetNextWaypoint(AActor* CurrentWaypo
 			// set first waypoint if no other waypoints exist of if crow hasn't moved yet
 			ReturnedTargetPoint = Cast<ATargetPoint>(Waypoints[0]);
 			GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::Red, FString::Printf(TEXT("Moving to waypoint 1")));
+
+			bReturnedToStart = true;
+			OurCurrentWaypoint = Waypoints[3];
+
+			// set first waypoint if no other waypoints exist
+			ReturnedTargetPoint = Cast<ATargetPoint>(Waypoints[0]);
 			break;
 
 		}// end nested nullptr check if

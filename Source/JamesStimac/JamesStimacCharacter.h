@@ -86,6 +86,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	uint8 bUsingMotionControllers : 1;
 
+	// herb counts will be in a matrix eventually 
+	/** How many of Worgroot are acquired **/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HerbCount")
+		uint8 WorgrootCount;
+
+	/** How many of Elfear are acquired **/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HerbCount")
+		uint8 ElfsearCount;
+
+	/** How many of Hollybell are acquired **/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HerbCount")
+		uint8 BellhollyCount;
+
 private:
 	/*Raycast function bound to a input*/
 	void DisplayRaycast();
@@ -126,7 +139,7 @@ protected:
 	};
 	void BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
 	void EndTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
-	void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);
+	/*void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);*/
 	TouchData	TouchItem;
 	
 protected:
