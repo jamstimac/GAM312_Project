@@ -17,13 +17,17 @@ AMedKitActor::AMedKitActor()
 // On Overlap with another actor return health
 void AMedKitActor::OnOverlap(AActor* MyOverlappedActor, AActor* OtherActor)
 {
+	GEngine->AddOnScreenDebugMessage(10, 5.f, FColor::Red, FString::Printf(TEXT("Getting healed 1 ")));
 	if ((OtherActor != nullptr) && (OtherActor != this))
 	{
+
 		// get character ref from Cast to OtherActor
 		MyCharacterRef = Cast<AJamesStimacCharacter>(OtherActor);
 
+		GEngine->AddOnScreenDebugMessage(10, 5.f, FColor::Red, FString::Printf(TEXT("Getting healed 2 ")));
 		if (MyCharacterRef && (MyCharacterRef->GetHealth() < 1.0f))
 		{
+			GEngine->AddOnScreenDebugMessage(10, 5.f, FColor::Red, FString::Printf(TEXT("Getting healed 3 ")));
 			MyCharacterRef->UpdateHealth(100.0f);
 			this->Destroy();
 		}

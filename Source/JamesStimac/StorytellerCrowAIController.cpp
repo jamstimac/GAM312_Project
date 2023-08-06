@@ -44,7 +44,7 @@ void AStorytellerCrowAIController::BeginPlay()
 		
 
 	OurCurrentWaypoint = Waypoints[0];
-	GetNextWaypoint(OurCurrentWaypoint);
+	GoToNextWaypoint(GetNextWaypoint(OurCurrentWaypoint));
 }
 
 
@@ -59,22 +59,22 @@ void AStorytellerCrowAIController::Tick(float DeltaTime)
 		GEngine->AddOnScreenDebugMessage(3, 5.f, FColor::Yellow, FString::Printf(TEXT("current actor location %.2f x %.2f y %.2f z"), MyCharacterLocation.X, MyCharacterLocation.Y, MyCharacterLocation.Z));
 		if (bCanMoveToWPOne || bCanMoveToWPTwo) {
 
-			if ((MyCharacterLocation.X - MoveAICheck1X) <= 0.f)
+			if ((MyCharacterLocation.X - MoveAICheck1X) <= 0.001f)
 			{
-				GetNextWaypoint(OurCurrentWaypoint);
+				GoToNextWaypoint(GetNextWaypoint(OurCurrentWaypoint));
 				
 			}
 			// if Character X & Y values are "past" AI movement check for waypoint 2
-			else if (((MyCharacterLocation.X - MoveAICheck2X) <= 0.f) && ((MyCharacterLocation.Y - MoveAICheck2Y) <= 0.f))
+			else if (((MyCharacterLocation.X - MoveAICheck2X) <= 0.001f) && ((MyCharacterLocation.Y - MoveAICheck2Y) <= 0.001f))
 			{
-				GetNextWaypoint(OurCurrentWaypoint);
+				GoToNextWaypoint(GetNextWaypoint(OurCurrentWaypoint));
 				
 			}
 		}
 		// FIXME:: will call immediately once both bools are set, need a sort of timer or some action to happen in between
 		else if (!bReturnedToStart)
 		{
-			GetNextWaypoint(OurCurrentWaypoint);
+			GoToNextWaypoint(GetNextWaypoint(OurCurrentWaypoint));
 			
 		}
 	}
@@ -141,12 +141,6 @@ ATargetPoint* AStorytellerCrowAIController::GetNextWaypoint(AActor* CurrentWaypo
 			// set first waypoint if no other waypoints exist of if crow hasn't moved yet
 			ReturnedTargetPoint = Cast<ATargetPoint>(Waypoints[0]);
 			GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::Red, FString::Printf(TEXT("Moving to waypoint 1")));
-
-			bReturnedToStart = true;
-			OurCurrentWaypoint = Waypoints[3];
-
-			// set first waypoint if no other waypoints exist
-			ReturnedTargetPoint = Cast<ATargetPoint>(Waypoints[0]);
 			break;
 
 		}// end nested nullptr check if

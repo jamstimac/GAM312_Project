@@ -94,6 +94,7 @@ void ABellhollyActor::OnOverlapEndIncrement(UPrimitiveComponent* OverlappedComp,
 		}
 
 		//FIXME: add code to disconnect input specific HUD elements with collision overlap
+		InputComponent->RemoveActionBinding("Interact", IE_Pressed);
 	}
 }
 

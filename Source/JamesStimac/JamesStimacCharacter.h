@@ -21,45 +21,52 @@ class AJamesStimacCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-	/** Pawn mesh: 1st person view (arms; seen only by self) */
-	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
-	USkeletalMeshComponent* Mesh1P;
-
-	/** Gun mesh: 1st person view (seen only by self) */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	USkeletalMeshComponent* FP_Gun;
-
-	/** Location on gun mesh where projectiles should spawn. */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	USceneComponent* FP_MuzzleLocation;
-
-	/** Gun mesh: VR view (attached to the VR controller directly, no arm, just the actual gun) */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	USkeletalMeshComponent* VR_Gun;
-
-	/** Location on VR gun mesh where projectiles should spawn. */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	USceneComponent* VR_MuzzleLocation;
-
-	/** First person camera */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	UCameraComponent* FirstPersonCameraComponent;
-
-	/** Motion controller (right hand) */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	UMotionControllerComponent* R_MotionController;
-
-	/** Motion controller (left hand) */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	UMotionControllerComponent* L_MotionController;
-
 public:
 	AJamesStimacCharacter();
 
+	/** Mesh Components and movement components*/
+/** Pawn mesh: 1st person view (arms; seen only by self) */
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+		USkeletalMeshComponent* Mesh1P;
+
+	/** Gun mesh: 1st person view (seen only by self) */
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+		USkeletalMeshComponent* FP_Gun;
+
+	/** Location on gun mesh where projectiles should spawn. */
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+		USceneComponent* FP_MuzzleLocation;
+
+	/** Gun mesh: VR view (attached to the VR controller directly, no arm, just the actual gun) */
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+		USkeletalMeshComponent* VR_Gun;
+
+	/** Location on VR gun mesh where projectiles should spawn. */
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+		USceneComponent* VR_MuzzleLocation;
+
+	/** First person camera */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+		UCameraComponent* FirstPersonCameraComponent;
+
+	/** Motion controller (right hand) */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+		UMotionControllerComponent* R_MotionController;
+
+	/** Motion controller (left hand) */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+		UMotionControllerComponent* L_MotionController;
+
 protected:
+
 	virtual void BeginPlay();
 
 	virtual void Tick(float DeltaTime) override;
+
+	// recieve point damage fix function
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser);
+
+public:
 
 	/** HUD variables */
 	/** Health Variables*/
@@ -104,10 +111,21 @@ protected:
 	FTimerHandle MagicTimerHandle;
 	FTimerHandle HealthTimerHandle;
 
+	/** bool to initalize widget */
+	bool bInAlchemyMinigame;
+
+	/** Bool for magic and health */
 	bool bCanBeDamaged;
 	bool bCanUseMagic;
 
-public:
+	// Setter function for InAlchemyMinigame
+	UFUNCTION(Category = "Minigame")
+		void SetInAlchemyMinigame(bool inMinigame);
+
+	// Getter function for InAlchemyMinigame
+	UFUNCTION(BlueprintPure, Category = "Minigame")
+		bool GetInAlchemyMinigame();
+
 	/** HUD Functions */
 	/** Get Health */
 	UFUNCTION(BlueprintPure, Category = "Health")
@@ -138,8 +156,8 @@ public:
 		void DamageTimer();
 
 	/** runs when interacting weith an element that calls ApplyPointDamage */
-	UFUNCTION()
-		void RecievePointDamage(float Damage, const UDamageType* DamageType, FVector HitLocation, FVector HitNormal, UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, AController* InstigatedBy, AActor* DamageCauser, const FHitResult& HitInfo);
+	/*UFUNCTION()
+		void RecievePointDamage(float Damage, const UDamageType* DamageType, FVector HitLocation, FVector HitNormal, UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, AController* InstigatedBy, AActor* DamageCauser, const FHitResult& HitInfo);*/
 
 	/** Set damage State */
 	UFUNCTION()

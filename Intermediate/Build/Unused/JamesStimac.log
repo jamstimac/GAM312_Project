@@ -1,24 +1,14 @@
 ﻿  Using 'git status' to determine working set for adaptive non-unity build (C:\Users\james\Projects\SNHU\GAM312\JamesStimac).
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Binaries\Win64\UE4Editor-JamesStimac-0504.dll
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Binaries\Win64\UE4Editor-JamesStimac-0504.pdb
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Binaries\Win64\UE4Editor-JamesStimac-1871.dll
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Binaries\Win64\UE4Editor-JamesStimac-1871.pdb
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Binaries\Win64\UE4Editor-JamesStimac-2346.dll
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Binaries\Win64\UE4Editor-JamesStimac-2346.pdb
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Binaries\Win64\UE4Editor-JamesStimac-5911.dll
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Binaries\Win64\UE4Editor-JamesStimac-5911.pdb
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac-0504.lib
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac-1871.lib
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac-2346.lib
-  Deleted hot-reload file: C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac-5911.lib
   Building JamesStimacEditor...
   Using Visual Studio 2019 14.29.30151 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133) and Windows 10.0.19041.0 SDK (C:\Program Files (x86)\Windows Kits\10).
-  Building 4 actions with 20 processes...
-    [1/4] MedKitActor.cpp
-    [2/4] UE4Editor-JamesStimac.lib
-       Creating library C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac.lib and object C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac.exp
-    [3/4] UE4Editor-JamesStimac.dll
-       Creating library C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac.suppressed.lib and object C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac.suppressed.exp
-    [4/4] JamesStimacEditor.target
-  Total time in Parallel executor: 1.54 seconds
-  Total execution time: 1.92 seconds
+  Building 6 actions with 20 processes...
+    [1/6] WorgrootActor.cpp
+    [2/6] ElfsearActor.cpp
+    [3/6] BellhollyActor.cpp
+    [4/6] UE4Editor-JamesStimac-0022.lib
+       Creating library C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac-0022.lib and object C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac-0022.exp
+    [5/6] UE4Editor-JamesStimac-0022.dll
+       Creating library C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac-0022.suppressed.lib and object C:\Users\james\Projects\SNHU\GAM312\JamesStimac\Intermediate\Build\Win64\UE4Editor\Development\JamesStimac\UE4Editor-JamesStimac-0022.suppressed.exp
+    [6/6] JamesStimacEditor.target
+  Total time in Parallel executor: 1.88 seconds
+  Total execution time: 2.32 seconds

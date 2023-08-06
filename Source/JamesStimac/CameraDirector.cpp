@@ -4,8 +4,10 @@
 #include "CameraDirector.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/Inputcomponent.h"
-// include character class so that we can leave CameraDirector and return to default player camera
+// include character class to access minigame bool
+#include "JamesStimacCharacter.h"
 #include "Camera/PlayerCameraManager.h"
+
 
 // Sets default values
 ACameraDirector::ACameraDirector()
@@ -83,8 +85,14 @@ void ACameraDirector::NextCamera()
 				{
 					GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Purple, FString::Printf(TEXT("You have entered the Alchemy Minigame")));
 					PlayerCamera = OurPlayerController->GetViewTarget();
-				}
 
+					// set InAlchemyMinigame true
+					AJamesStimacCharacter* OurCharacterRef = Cast<AJamesStimacCharacter>(OurPlayerController->GetPawn());
+					if (OurCharacterRef)
+					{
+						OurCharacterRef->SetInAlchemyMinigame(true);
+					}
+				}
 				// smoothly cut to camera 1 (Cauldron Camera)
 				OurPlayerController->SetViewTargetWithBlend(CameraOne, SmoothBlendTime);
 				
@@ -148,6 +156,13 @@ void ACameraDirector::LeaveCameraDirector()
 				// if CurrentViewport equals one of the CameraDirector cameras
 				if (CurrentViewport == CameraOne || CurrentViewport == CameraTwo || CurrentViewport == CameraThree) 
 				{
+					// set InAlchemyMinigame false
+					AJamesStimacCharacter* OurCharacterRef = Cast<AJamesStimacCharacter>(OurPlayerController->GetPawn());
+					if (OurCharacterRef)
+					{
+						OurCharacterRef->SetInAlchemyMinigame(false);
+					}
+
 					// reset player viewport to original
 					GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Purple, FString::Printf(TEXT("You have left the Alchemy Minigame")));
 					OurPlayerController->SetViewTargetWithBlend(PlayerCamera, SmoothBlendTime);

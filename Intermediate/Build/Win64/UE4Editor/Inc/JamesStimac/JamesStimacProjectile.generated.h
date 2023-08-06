@@ -74,11 +74,7 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AJamesStimacProjectile)
 
 
-#define JamesStimac_Source_JamesStimac_JamesStimacProjectile_h_15_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__CollisionComp() { return STRUCT_OFFSET(AJamesStimacProjectile, CollisionComp); } \
-	FORCEINLINE static uint32 __PPO__ProjectileMovement() { return STRUCT_OFFSET(AJamesStimacProjectile, ProjectileMovement); }
-
-
+#define JamesStimac_Source_JamesStimac_JamesStimacProjectile_h_15_PRIVATE_PROPERTY_OFFSET
 #define JamesStimac_Source_JamesStimac_JamesStimacProjectile_h_12_PROLOG
 #define JamesStimac_Source_JamesStimac_JamesStimacProjectile_h_15_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

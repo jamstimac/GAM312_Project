@@ -79,6 +79,7 @@ void AElfsearActor::OnOverlapBeginCanPickUp(UPrimitiveComponent* OverlappedComp,
 				InputComponent->BindAction("Interact", IE_Pressed, this, &AElfsearActor::PickUp);
 			}
 			//FIXME: add code to connect input specific HUD elements with collision overlap
+				
 		}
 	}
 }
@@ -94,6 +95,7 @@ void AElfsearActor::OnOverlapEndIncrement(UPrimitiveComponent* OverlappedComp, A
 		}
 
 		//FIXME: add code to disconnect input specific HUD elements with collision overlap
+		InputComponent->RemoveActionBinding("Interact", IE_Pressed);
 	}
 }
 

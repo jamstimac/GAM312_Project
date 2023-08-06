@@ -17,18 +17,13 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 	JAMESSTIMAC_API UClass* Z_Construct_UClass_AJamesStimacCharacter();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_JamesStimac();
-	ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
-	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
-	ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
-	ENGINE_API UClass* Z_Construct_UClass_AController_NoRegister();
-	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
-	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USceneComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	HEADMOUNTEDDISPLAY_API UClass* Z_Construct_UClass_UMotionControllerComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UMaterialInterface_NoRegister();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	JAMESSTIMAC_API UClass* Z_Construct_UClass_AJamesStimacProjectile_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
@@ -68,23 +63,6 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->SetDamageState();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AJamesStimacCharacter::execRecievePointDamage)
-	{
-		P_GET_PROPERTY(FFloatProperty,Z_Param_Damage);
-		P_GET_OBJECT(UDamageType,Z_Param_DamageType);
-		P_GET_STRUCT(FVector,Z_Param_HitLocation);
-		P_GET_STRUCT(FVector,Z_Param_HitNormal);
-		P_GET_OBJECT(UPrimitiveComponent,Z_Param_HitComponent);
-		P_GET_PROPERTY(FNameProperty,Z_Param_BoneName);
-		P_GET_STRUCT(FVector,Z_Param_ShotFromDirection);
-		P_GET_OBJECT(AController,Z_Param_InstigatedBy);
-		P_GET_OBJECT(AActor,Z_Param_DamageCauser);
-		P_GET_STRUCT_REF(FHitResult,Z_Param_Out_HitInfo);
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->RecievePointDamage(Z_Param_Damage,Z_Param_DamageType,Z_Param_HitLocation,Z_Param_HitNormal,Z_Param_HitComponent,Z_Param_BoneName,Z_Param_ShotFromDirection,Z_Param_InstigatedBy,Z_Param_DamageCauser,Z_Param_Out_HitInfo);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(AJamesStimacCharacter::execDamageTimer)
@@ -137,6 +115,21 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		*(float*)Z_Param__Result=P_THIS->GetHealth();
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(AJamesStimacCharacter::execGetInAlchemyMinigame)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(bool*)Z_Param__Result=P_THIS->GetInAlchemyMinigame();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(AJamesStimacCharacter::execSetInAlchemyMinigame)
+	{
+		P_GET_UBOOL(Z_Param_inMinigame);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->SetInAlchemyMinigame(Z_Param_inMinigame);
+		P_NATIVE_END;
+	}
 	void AJamesStimacCharacter::StaticRegisterNativesAJamesStimacCharacter()
 	{
 		UClass* Class = AJamesStimacCharacter::StaticClass();
@@ -144,11 +137,12 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 			{ "DamageTimer", &AJamesStimacCharacter::execDamageTimer },
 			{ "GetHealth", &AJamesStimacCharacter::execGetHealth },
 			{ "GetHealthIntText", &AJamesStimacCharacter::execGetHealthIntText },
+			{ "GetInAlchemyMinigame", &AJamesStimacCharacter::execGetInAlchemyMinigame },
 			{ "GetMagic", &AJamesStimacCharacter::execGetMagic },
 			{ "GetMagicIntText", &AJamesStimacCharacter::execGetMagicIntText },
 			{ "PlayFlash", &AJamesStimacCharacter::execPlayFlash },
-			{ "RecievePointDamage", &AJamesStimacCharacter::execRecievePointDamage },
 			{ "SetDamageState", &AJamesStimacCharacter::execSetDamageState },
+			{ "SetInAlchemyMinigame", &AJamesStimacCharacter::execSetInAlchemyMinigame },
 			{ "SetMagicChange", &AJamesStimacCharacter::execSetMagicChange },
 			{ "SetMagicState", &AJamesStimacCharacter::execSetMagicState },
 			{ "SetMagicValue", &AJamesStimacCharacter::execSetMagicValue },
@@ -248,6 +242,46 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AJamesStimacCharacter_GetHealthIntText_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics
+	{
+		struct JamesStimacCharacter_eventGetInAlchemyMinigame_Parms
+		{
+			bool ReturnValue;
+		};
+		static void NewProp_ReturnValue_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+	{
+		((JamesStimacCharacter_eventGetInAlchemyMinigame_Parms*)Obj)->ReturnValue = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(JamesStimacCharacter_eventGetInAlchemyMinigame_Parms), &Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Minigame" },
+		{ "Comment", "// Getter function for InAlchemyMinigame\n" },
+		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
+		{ "ToolTip", "Getter function for InAlchemyMinigame" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AJamesStimacCharacter, nullptr, "GetInAlchemyMinigame", nullptr, nullptr, sizeof(JamesStimacCharacter_eventGetInAlchemyMinigame_Parms), Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -361,100 +395,6 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		}
 		return ReturnFunction;
 	}
-	struct Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics
-	{
-		struct JamesStimacCharacter_eventRecievePointDamage_Parms
-		{
-			float Damage;
-			const UDamageType* DamageType;
-			FVector HitLocation;
-			FVector HitNormal;
-			UPrimitiveComponent* HitComponent;
-			FName BoneName;
-			FVector ShotFromDirection;
-			AController* InstigatedBy;
-			AActor* DamageCauser;
-			FHitResult HitInfo;
-		};
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_Damage;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DamageType_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_DamageType;
-		static const UE4CodeGen_Private::FStructPropertyParams NewProp_HitLocation;
-		static const UE4CodeGen_Private::FStructPropertyParams NewProp_HitNormal;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HitComponent_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_HitComponent;
-		static const UE4CodeGen_Private::FNamePropertyParams NewProp_BoneName;
-		static const UE4CodeGen_Private::FStructPropertyParams NewProp_ShotFromDirection;
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_InstigatedBy;
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_DamageCauser;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HitInfo_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FStructPropertyParams NewProp_HitInfo;
-		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UE4CodeGen_Private::FFunctionParams FuncParams;
-	};
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_Damage = { "Damage", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(JamesStimacCharacter_eventRecievePointDamage_Parms, Damage), METADATA_PARAMS(nullptr, 0) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_DamageType_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_DamageType = { "DamageType", nullptr, (EPropertyFlags)0x0010000000000082, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(JamesStimacCharacter_eventRecievePointDamage_Parms, DamageType), Z_Construct_UClass_UDamageType_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_DamageType_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_DamageType_MetaData)) };
-	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitLocation = { "HitLocation", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(JamesStimacCharacter_eventRecievePointDamage_Parms, HitLocation), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitNormal = { "HitNormal", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(JamesStimacCharacter_eventRecievePointDamage_Parms, HitNormal), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitComponent_MetaData[] = {
-		{ "EditInline", "true" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitComponent = { "HitComponent", nullptr, (EPropertyFlags)0x0010000000080080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(JamesStimacCharacter_eventRecievePointDamage_Parms, HitComponent), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitComponent_MetaData)) };
-	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_BoneName = { "BoneName", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(JamesStimacCharacter_eventRecievePointDamage_Parms, BoneName), METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_ShotFromDirection = { "ShotFromDirection", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(JamesStimacCharacter_eventRecievePointDamage_Parms, ShotFromDirection), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_InstigatedBy = { "InstigatedBy", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(JamesStimacCharacter_eventRecievePointDamage_Parms, InstigatedBy), Z_Construct_UClass_AController_NoRegister, METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_DamageCauser = { "DamageCauser", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(JamesStimacCharacter_eventRecievePointDamage_Parms, DamageCauser), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitInfo_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitInfo = { "HitInfo", nullptr, (EPropertyFlags)0x0010008008000182, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(JamesStimacCharacter_eventRecievePointDamage_Parms, HitInfo), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitInfo_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitInfo_MetaData)) };
-	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_Damage,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_DamageType,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitLocation,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitNormal,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitComponent,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_BoneName,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_ShotFromDirection,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_InstigatedBy,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_DamageCauser,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::NewProp_HitInfo,
-	};
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::Function_MetaDataParams[] = {
-		{ "Comment", "/** runs when interacting weith an element that calls ApplyPointDamage */" },
-		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
-		{ "ToolTip", "runs when interacting weith an element that calls ApplyPointDamage" },
-	};
-#endif
-	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AJamesStimacCharacter, nullptr, "RecievePointDamage", nullptr, nullptr, sizeof(JamesStimacCharacter_eventRecievePointDamage_Parms), Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00C20401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
 	struct Z_Construct_UFunction_AJamesStimacCharacter_SetDamageState_Statics
 	{
 #if WITH_METADATA
@@ -476,6 +416,46 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AJamesStimacCharacter_SetDamageState_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics
+	{
+		struct JamesStimacCharacter_eventSetInAlchemyMinigame_Parms
+		{
+			bool inMinigame;
+		};
+		static void NewProp_inMinigame_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_inMinigame;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::NewProp_inMinigame_SetBit(void* Obj)
+	{
+		((JamesStimacCharacter_eventSetInAlchemyMinigame_Parms*)Obj)->inMinigame = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::NewProp_inMinigame = { "inMinigame", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(JamesStimacCharacter_eventSetInAlchemyMinigame_Parms), &Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::NewProp_inMinigame_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::NewProp_inMinigame,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Minigame" },
+		{ "Comment", "// Setter function for InAlchemyMinigame\n" },
+		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
+		{ "ToolTip", "Setter function for InAlchemyMinigame" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AJamesStimacCharacter, nullptr, "SetInAlchemyMinigame", nullptr, nullptr, sizeof(JamesStimacCharacter_eventSetInAlchemyMinigame_Parms), Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -769,11 +749,12 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		{ &Z_Construct_UFunction_AJamesStimacCharacter_DamageTimer, "DamageTimer" }, // 525185443
 		{ &Z_Construct_UFunction_AJamesStimacCharacter_GetHealth, "GetHealth" }, // 2319105695
 		{ &Z_Construct_UFunction_AJamesStimacCharacter_GetHealthIntText, "GetHealthIntText" }, // 3086256326
+		{ &Z_Construct_UFunction_AJamesStimacCharacter_GetInAlchemyMinigame, "GetInAlchemyMinigame" }, // 2848874985
 		{ &Z_Construct_UFunction_AJamesStimacCharacter_GetMagic, "GetMagic" }, // 3520142100
 		{ &Z_Construct_UFunction_AJamesStimacCharacter_GetMagicIntText, "GetMagicIntText" }, // 1769605422
 		{ &Z_Construct_UFunction_AJamesStimacCharacter_PlayFlash, "PlayFlash" }, // 4204842723
-		{ &Z_Construct_UFunction_AJamesStimacCharacter_RecievePointDamage, "RecievePointDamage" }, // 2459543648
 		{ &Z_Construct_UFunction_AJamesStimacCharacter_SetDamageState, "SetDamageState" }, // 511876741
+		{ &Z_Construct_UFunction_AJamesStimacCharacter_SetInAlchemyMinigame, "SetInAlchemyMinigame" }, // 927400013
 		{ &Z_Construct_UFunction_AJamesStimacCharacter_SetMagicChange, "SetMagicChange" }, // 3605374081
 		{ &Z_Construct_UFunction_AJamesStimacCharacter_SetMagicState, "SetMagicState" }, // 2973982660
 		{ &Z_Construct_UFunction_AJamesStimacCharacter_SetMagicValue, "SetMagicValue" }, // 858472334
@@ -796,7 +777,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		{ "ToolTip", "Pawn mesh: 1st person view (arms; seen only by self)" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Mesh1P = { "Mesh1P", nullptr, (EPropertyFlags)0x00400000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, Mesh1P), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Mesh1P_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Mesh1P_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Mesh1P = { "Mesh1P", nullptr, (EPropertyFlags)0x00100000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, Mesh1P), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Mesh1P_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Mesh1P_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun_MetaData[] = {
 		{ "Category", "Mesh" },
@@ -806,7 +787,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		{ "ToolTip", "Gun mesh: 1st person view (seen only by self)" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun = { "FP_Gun", nullptr, (EPropertyFlags)0x00400000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FP_Gun), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun = { "FP_Gun", nullptr, (EPropertyFlags)0x00100000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FP_Gun), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_Gun_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation_MetaData[] = {
 		{ "Category", "Mesh" },
@@ -816,7 +797,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		{ "ToolTip", "Location on gun mesh where projectiles should spawn." },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation = { "FP_MuzzleLocation", nullptr, (EPropertyFlags)0x00400000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FP_MuzzleLocation), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation = { "FP_MuzzleLocation", nullptr, (EPropertyFlags)0x00100000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FP_MuzzleLocation), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FP_MuzzleLocation_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun_MetaData[] = {
 		{ "Category", "Mesh" },
@@ -826,7 +807,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		{ "ToolTip", "Gun mesh: VR view (attached to the VR controller directly, no arm, just the actual gun)" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun = { "VR_Gun", nullptr, (EPropertyFlags)0x00400000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, VR_Gun), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun = { "VR_Gun", nullptr, (EPropertyFlags)0x00100000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, VR_Gun), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_Gun_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation_MetaData[] = {
 		{ "Category", "Mesh" },
@@ -836,7 +817,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		{ "ToolTip", "Location on VR gun mesh where projectiles should spawn." },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation = { "VR_MuzzleLocation", nullptr, (EPropertyFlags)0x00400000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, VR_MuzzleLocation), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation = { "VR_MuzzleLocation", nullptr, (EPropertyFlags)0x00100000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, VR_MuzzleLocation), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_VR_MuzzleLocation_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FirstPersonCameraComponent_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
@@ -847,7 +828,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		{ "ToolTip", "First person camera" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FirstPersonCameraComponent = { "FirstPersonCameraComponent", nullptr, (EPropertyFlags)0x00400000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FirstPersonCameraComponent), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FirstPersonCameraComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FirstPersonCameraComponent_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FirstPersonCameraComponent = { "FirstPersonCameraComponent", nullptr, (EPropertyFlags)0x00100000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FirstPersonCameraComponent), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FirstPersonCameraComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FirstPersonCameraComponent_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_R_MotionController_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
@@ -858,7 +839,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		{ "ToolTip", "Motion controller (right hand)" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_R_MotionController = { "R_MotionController", nullptr, (EPropertyFlags)0x00400000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, R_MotionController), Z_Construct_UClass_UMotionControllerComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_R_MotionController_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_R_MotionController_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_R_MotionController = { "R_MotionController", nullptr, (EPropertyFlags)0x00100000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, R_MotionController), Z_Construct_UClass_UMotionControllerComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_R_MotionController_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_R_MotionController_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_L_MotionController_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
@@ -869,7 +850,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		{ "ToolTip", "Motion controller (left hand)" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_L_MotionController = { "L_MotionController", nullptr, (EPropertyFlags)0x00400000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, L_MotionController), Z_Construct_UClass_UMotionControllerComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_L_MotionController_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_L_MotionController_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_L_MotionController = { "L_MotionController", nullptr, (EPropertyFlags)0x00100000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, L_MotionController), Z_Construct_UClass_UMotionControllerComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_L_MotionController_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_L_MotionController_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullHealth_MetaData[] = {
 		{ "Category", "Health" },
@@ -878,28 +859,28 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		{ "ToolTip", "Health Variables" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullHealth = { "FullHealth", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FullHealth), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullHealth_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullHealth_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullHealth = { "FullHealth", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FullHealth), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullHealth_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullHealth_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Health_MetaData[] = {
 		{ "Category", "Health" },
 		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Health = { "Health", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, Health), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Health_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Health_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Health = { "Health", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, Health), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Health_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Health_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HealthPercentage_MetaData[] = {
 		{ "Category", "Health" },
 		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HealthPercentage = { "HealthPercentage", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, HealthPercentage), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HealthPercentage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HealthPercentage_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HealthPercentage = { "HealthPercentage", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, HealthPercentage), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HealthPercentage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_HealthPercentage_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousHealth_MetaData[] = {
 		{ "Category", "Health" },
 		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousHealth = { "PreviousHealth", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, PreviousHealth), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousHealth_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousHealth_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousHealth = { "PreviousHealth", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, PreviousHealth), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousHealth_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousHealth_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullMagic_MetaData[] = {
 		{ "Category", "Magic" },
@@ -908,49 +889,49 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		{ "ToolTip", "Magic Variables" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullMagic = { "FullMagic", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FullMagic), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullMagic_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullMagic_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullMagic = { "FullMagic", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, FullMagic), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullMagic_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_FullMagic_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Magic_MetaData[] = {
 		{ "Category", "Magic" },
 		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Magic = { "Magic", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, Magic), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Magic_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Magic_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Magic = { "Magic", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, Magic), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Magic_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_Magic_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicPercentage_MetaData[] = {
 		{ "Category", "Magic" },
 		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicPercentage = { "MagicPercentage", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, MagicPercentage), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicPercentage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicPercentage_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicPercentage = { "MagicPercentage", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, MagicPercentage), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicPercentage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicPercentage_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousMagic_MetaData[] = {
 		{ "Category", "Magic" },
 		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousMagic = { "PreviousMagic", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, PreviousMagic), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousMagic_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousMagic_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousMagic = { "PreviousMagic", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, PreviousMagic), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousMagic_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_PreviousMagic_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicValue_MetaData[] = {
 		{ "Category", "Magic" },
 		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicValue = { "MagicValue", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, MagicValue), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicValue_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicValue = { "MagicValue", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, MagicValue), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicValue_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_redFlash_MetaData[] = {
 		{ "Category", "Health" },
 		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_redFlash = { "redFlash", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, redFlash), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_redFlash_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_redFlash_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_redFlash = { "redFlash", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, redFlash), METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_redFlash_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_redFlash_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicCurve_MetaData[] = {
 		{ "Category", "Magic" },
 		{ "ModuleRelativePath", "JamesStimacCharacter.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicCurve = { "MagicCurve", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, MagicCurve), Z_Construct_UClass_UCurveFloat_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicCurve_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicCurve_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicCurve = { "MagicCurve", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AJamesStimacCharacter, MagicCurve), Z_Construct_UClass_UCurveFloat_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicCurve_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_MagicCurve_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJamesStimacCharacter_Statics::NewProp_GunDefaultMaterial_MetaData[] = {
 		{ "Category", "Magic" },
@@ -1121,7 +1102,7 @@ void EmptyLinkFunctionForGeneratedCodeJamesStimacCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AJamesStimacCharacter, 1055614639);
+	IMPLEMENT_CLASS(AJamesStimacCharacter, 2679786126);
 	template<> JAMESSTIMAC_API UClass* StaticClass<AJamesStimacCharacter>()
 	{
 		return AJamesStimacCharacter::StaticClass();

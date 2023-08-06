@@ -67,7 +67,8 @@ void ACampFireActor::ApplyFireDamage()
 {
 	if (bCanApplyDamage)
 	{
-		UGameplayStatics::ApplyPointDamage(MyCharacter, 200.0f, GetActorLocation(), MyHit, nullptr, this, FireDamageType);
+		GEngine->AddOnScreenDebugMessage(12, 2.f, FColor::Orange, FString::Printf(TEXT("Taking Damage")));
+		UGameplayStatics::ApplyPointDamage(MyCharacter, 20.0f, GetActorLocation(), MyHit, nullptr, this, FireDamageType);
 	}
 }
 

@@ -55,7 +55,7 @@ AJamesStimacCharacter::AJamesStimacCharacter()
 	FP_Gun->SetOnlyOwnerSee(false);			// otherwise won't be visible in the multiplayer
 	FP_Gun->bCastDynamicShadow = false;
 	FP_Gun->CastShadow = false;
-	 FP_Gun->SetupAttachment(Mesh1P, TEXT("GripPoint"));
+	FP_Gun->SetupAttachment(Mesh1P, TEXT("GripPoint"));
 	FP_Gun->SetupAttachment(RootComponent);
 
 	FP_MuzzleLocation = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzleLocation"));
@@ -90,7 +90,7 @@ AJamesStimacCharacter::AJamesStimacCharacter()
 	VR_MuzzleLocation->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));		// Counteract the rotation of the VR gun model.
 
 	// Uncomment the following line to turn motion controllers on by default:
-	bUsingMotionControllers = true;
+	// bUsingMotionControllers = true;
 }
 
 void AJamesStimacCharacter::BeginPlay()
@@ -98,8 +98,11 @@ void AJamesStimacCharacter::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 
+	// initialize inminigame bool
+	bInAlchemyMinigame = false;
+
 	// initialize health variables
-	FullHealth = 1000.0f;
+	FullHealth = 100.0f;
 	Health = FullHealth;
 	HealthPercentage = 1.0f;
 	PreviousHealth = HealthPercentage;
@@ -128,7 +131,6 @@ void AJamesStimacCharacter::BeginPlay()
 		MyTimeline.SetTimelineFinishedFunc(TimelineFinishedCallback);
 	}
 
-
 	//Attach gun mesh component to Skeleton, doing it here because the skeleton is not yet created in the constructor
 	FP_Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint"));
 
@@ -150,7 +152,10 @@ void AJamesStimacCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	MyTimeline.TickTimeline(DeltaTime);
+
+	GEngine->AddOnScreenDebugMessage(10, 5.f, FColor::Red, FString::Printf(TEXT("Current health: %f"), Health));
 }
+
 
 //////////////////////////////////////////////////////////////////////////
 // Input
@@ -168,7 +173,7 @@ void AJamesStimacCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	// Bind fire event
-	/*PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AJamesStimacCharacter::OnFire);*/
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AJamesStimacCharacter::OnFire);
 
 	// Enable touchscreen input
 	EnableTouchscreenMovement(PlayerInputComponent);
@@ -389,6 +394,19 @@ bool AJamesStimacCharacter::EnableTouchscreenMovement(class UInputComponent* Pla
 	return false;
 }
 
+///////////////////////////////////////////////////////////////////////////
+// AJamesStimacCharacter:: Minigame functions()
+
+// Setter function for InAlchemyMinigame
+void AJamesStimacCharacter::SetInAlchemyMinigame(bool inMinigame)
+{
+	bInAlchemyMinigame = inMinigame;
+}
+// Getter function for InAlchemyMinigame
+bool AJamesStimacCharacter::GetInAlchemyMinigame()
+{
+	return bInAlchemyMinigame;
+}
 
 ///////////////////////////////////////////////////////////////////////////
 // AJamesStimacCharacter:: HUD functions()
@@ -442,7 +460,7 @@ void AJamesStimacCharacter::DamageTimer()
 }
 
 /** runs when interacting weith an element that calls ApplyPointDamage */
-void AJamesStimacCharacter::RecievePointDamage(float Damage, const UDamageType* DamageType, FVector HitLocation, FVector HitNormal, UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, AController* InstigatedBy, AActor* DamageCauser, const FHitResult& HitInfo)
+float AJamesStimacCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
 	// change bool CanBeDamaged (so as not to create "exponential damage" that can kill player in one tick)
 	bCanBeDamaged = false;
@@ -451,10 +469,12 @@ void AJamesStimacCharacter::RecievePointDamage(float Damage, const UDamageType* 
 	redFlash = true;
 	
 	// call update health with current damage (negative so that it subtracts from Current health)
-	UpdateHealth(-Damage);
+	UpdateHealth(-DamageAmount);
 
 	// call Damage Timer
 	DamageTimer();
+
+	return DamageAmount;
 
 }
 
