@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\JamesStimac.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{B7F5CD81-9322-4741-AA0E-2027906A4632}</UniqueIdentifier>
+      <UniqueIdentifier>{5A46D4DB-1B7F-4047-BAF3-E696103C0A70}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\JamesStimac.Target.cs">
       <Filter>Source</Filter>
@@ -16,7 +16,7 @@
     <None Include="..\..\LICENSE" />
     <None Include="..\..\README.md" />
     <Filter Include="Config">
-      <UniqueIdentifier>{53260D65-FC65-4C8F-93D0-260C7F34FEC8}</UniqueIdentifier>
+      <UniqueIdentifier>{1122AF39-A86E-49FD-B416-1BD47FEFAE8A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -28,7 +28,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\JamesStimac">
-      <UniqueIdentifier>{A3643216-B3BA-4D93-B395-44F6E4F2C24D}</UniqueIdentifier>
+      <UniqueIdentifier>{598A85AF-D674-4DD1-B693-8C7302790CA8}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\JamesStimac\BellhollyActor.cpp">
       <Filter>Source\JamesStimac</Filter>
@@ -40,6 +40,12 @@
       <Filter>Source\JamesStimac</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\JamesStimac\CameraDirector.h">
+      <Filter>Source\JamesStimac</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\JamesStimac\CampFireActor.cpp">
+      <Filter>Source\JamesStimac</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\JamesStimac\CampFireActor.h">
       <Filter>Source\JamesStimac</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\JamesStimac\ElfsearActor.cpp">
@@ -85,6 +91,12 @@
       <Filter>Source\JamesStimac</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\JamesStimac\LightSwitchActor.h">
+      <Filter>Source\JamesStimac</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\JamesStimac\MedKitActor.cpp">
+      <Filter>Source\JamesStimac</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\JamesStimac\MedKitActor.h">
       <Filter>Source\JamesStimac</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\JamesStimac\OnHitEventActor_GameExplanation.cpp">

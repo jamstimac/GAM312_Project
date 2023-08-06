@@ -6,12 +6,18 @@
 #include "TextureResource.h"
 #include "CanvasItem.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Blueprint/UserWidget.h"
 
 AJamesStimacHUD::AJamesStimacHUD()
 {
 	// Set the crosshair texture
 	static ConstructorHelpers::FObjectFinder<UTexture2D> CrosshairTexObj(TEXT("/Game/FirstPerson/Textures/FirstPersonCrosshair"));
 	CrosshairTex = CrosshairTexObj.Object;
+
+	// Set the HUD widget from Health_UI blueprint
+	static ConstructorHelpers::FClassFinder<UUserWidget> HealthBarObj(TEXT("/Game/FirstPerson/UI/Health_UI"));
+	HUDWidgetClass = HealthBarObj.Class;
+
 }
 
 
@@ -19,8 +25,7 @@ void AJamesStimacHUD::DrawHUD()
 {
 	Super::DrawHUD();
 
-	// Draw very simple crosshair
-
+	/* Draw very simple crosshair */ 
 	// find center of the Canvas
 	const FVector2D Center(Canvas->ClipX * 0.5f, Canvas->ClipY * 0.5f);
 
@@ -32,4 +37,20 @@ void AJamesStimacHUD::DrawHUD()
 	FCanvasTileItem TileItem( CrosshairDrawPosition, CrosshairTex->Resource, FLinearColor::White);
 	TileItem.BlendMode = SE_BLEND_Translucent;
 	Canvas->DrawItem( TileItem );
+}
+
+void AJamesStimacHUD::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// if HUDWidgetClass not a nullptr
+	if (HUDWidgetClass != nullptr)
+	{
+		CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), HUDWidgetClass);
+
+		if (CurrentWidget)
+		{
+			CurrentWidget->AddToViewport();
+		}
+	}
 }

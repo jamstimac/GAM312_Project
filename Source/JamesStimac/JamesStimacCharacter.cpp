@@ -12,6 +12,9 @@
 #include "MotionControllerComponent.h"
 #include "XRMotionControllerBase.h" // for FXRMotionControllerBase::RightHandSourceId
 #include "Engine.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "TimerManager.h"
+
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -95,6 +98,37 @@ void AJamesStimacCharacter::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 
+	// initialize health variables
+	FullHealth = 1000.0f;
+	Health = FullHealth;
+	HealthPercentage = 1.0f;
+	PreviousHealth = HealthPercentage;
+	bCanBeDamaged = true;
+
+	// initialize magic variables
+	FullMagic = 100.0f;
+	Magic = FullMagic;
+	MagicPercentage = 1.0f;
+	PreviousMagic = MagicPercentage;
+	MagicValue = 0.0f;
+	bCanUseMagic = true;
+
+	// if MagicCurve != nullptr
+	if (MagicCurve)
+	{
+		// timeline specific variables
+		FOnTimelineFloat TimelineCallback;
+		FOnTimelineEventStatic TimelineFinishedCallback;
+
+		// bind timeline to Set Magic Value and Set Magic State ufunctions
+		TimelineCallback.BindUFunction(this, FName("SetMagicValue"));
+		TimelineFinishedCallback.BindUFunction(this, FName{ TEXT("SetMagicState") });
+		// set variables for timeline [interpolation and Timeline Finished State Func]
+		MyTimeline.AddInterpFloat(MagicCurve, TimelineCallback);
+		MyTimeline.SetTimelineFinishedFunc(TimelineFinishedCallback);
+	}
+
+
 	//Attach gun mesh component to Skeleton, doing it here because the skeleton is not yet created in the constructor
 	FP_Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint"));
 
@@ -109,6 +143,13 @@ void AJamesStimacCharacter::BeginPlay()
 		VR_Gun->SetHiddenInGame(true, true);
 		Mesh1P->SetHiddenInGame(false, true);
 	}
+}
+
+void AJamesStimacCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	MyTimeline.TickTimeline(DeltaTime);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -148,7 +189,7 @@ void AJamesStimacCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// AJamesStimacCharacter::functions()
+// AJamesStimacCharacter:: interaction functions()
 
 void AJamesStimacCharacter::DisplayRaycast()
 {
@@ -175,7 +216,7 @@ void AJamesStimacCharacter::DisplayRaycast()
 void AJamesStimacCharacter::OnFire()
 {
 	// try and fire a projectile
-	if (ProjectileClass != nullptr)
+	if (ProjectileClass != nullptr && !FMath::IsNearlyZero(Magic, 0.001f) && bCanUseMagic)
 	{
 		UWorld* const World = GetWorld();
 		if (World != nullptr)
@@ -198,26 +239,41 @@ void AJamesStimacCharacter::OnFire()
 
 				// spawn the projectile at the muzzle
 				World->SpawnActor<AJamesStimacProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+			
+			
+				// try and play the sound if specified
+				if (FireSound != nullptr)
+				{
+					UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
+				}
+
+				// try and play a firing animation if specified
+				if (FireAnimation != nullptr)
+				{
+					// Get the animation object for the arms mesh
+					UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
+					if (AnimInstance != nullptr)
+					{
+						AnimInstance->Montage_Play(FireAnimation, 1.f);
+					}
+				}
+
+				// Stop MyTimeline
+				MyTimeline.Stop();
+
+				// Clear event timer
+				GetWorldTimerManager().ClearTimer(MagicTimerHandle);
+
+				// Reduce magic since using ability
+				SetMagicChange(-20.f);
+
+				// reset timer for UpdateMagic
+				GetWorldTimerManager().SetTimer(MagicTimerHandle, this, &AJamesStimacCharacter::UpdateMagic, 5.0f, false);
 			}
 		}
 	}
 
-	// try and play the sound if specified
-	if (FireSound != nullptr)
-	{
-		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
-	}
 
-	// try and play a firing animation if specified
-	if (FireAnimation != nullptr)
-	{
-		// Get the animation object for the arms mesh
-		UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
-		if (AnimInstance != nullptr)
-		{
-			AnimInstance->Montage_Play(FireAnimation, 1.f);
-		}
-	}
 }
 
 void AJamesStimacCharacter::OnResetVR()
@@ -330,5 +386,202 @@ bool AJamesStimacCharacter::EnableTouchscreenMovement(class UInputComponent* Pla
 		return true;
 	}
 	
+	return false;
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+// AJamesStimacCharacter:: HUD functions()
+
+/** Get Health */
+float AJamesStimacCharacter::GetHealth()
+{
+	// return protected variable HealthPercentage
+	return HealthPercentage;
+}
+
+/** Update Health */
+void AJamesStimacCharacter::UpdateHealth(float HealthChange)
+{
+	// set previous health
+	PreviousHealth = HealthPercentage;
+
+	// Health changed with damage (and clamped within range of 0 -> FullHealth
+	Health += HealthChange;
+	Health = FMath::Clamp(Health, 0.0f, FullHealth);
+
+	// Current Health percentage set to Health out of FullHealth
+	HealthPercentage = Health / FullHealth;
+}
+
+
+/** Get Health text */
+FText AJamesStimacCharacter::GetHealthIntText()
+{
+	// convert to an int (percentage) from a float
+	int32 HP = FMath::RoundHalfFromZero(HealthPercentage * 100);
+
+	// Create HP string from int HP
+	FString HPS = FString::FromInt(HP);
+
+	// append HP string with percent sign into HealthHUD string
+	FString HealthHUD = HPS + FString(TEXT("%"));
+
+	// create FText element from HealthHUD string
+	FText HPText = FText::FromString(HealthHUD);
+
+	// return HPText
+	return HPText;
+}
+
+/** Damage Timer */
+void AJamesStimacCharacter::DamageTimer()
+{
+	// set timer for function SetDamageState
+	GetWorldTimerManager().SetTimer(HealthTimerHandle, this, &AJamesStimacCharacter::SetDamageState, 2.0f, false);
+}
+
+/** runs when interacting weith an element that calls ApplyPointDamage */
+void AJamesStimacCharacter::RecievePointDamage(float Damage, const UDamageType* DamageType, FVector HitLocation, FVector HitNormal, UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, AController* InstigatedBy, AActor* DamageCauser, const FHitResult& HitInfo)
+{
+	// change bool CanBeDamaged (so as not to create "exponential damage" that can kill player in one tick)
+	bCanBeDamaged = false;
+
+	// set bool for HUD flash to true
+	redFlash = true;
+	
+	// call update health with current damage (negative so that it subtracts from Current health)
+	UpdateHealth(-Damage);
+
+	// call Damage Timer
+	DamageTimer();
+
+}
+
+/** Set damage State (Called on Timer) */
+void AJamesStimacCharacter::SetDamageState()
+{
+	// reset bool CanBeDamaged 
+	bCanBeDamaged = true;
+}
+
+/** Get Magic */
+float AJamesStimacCharacter::GetMagic()
+{
+	// return protected variable MagicPercentage
+	return MagicPercentage;
+}
+
+/** Update Magic */
+void AJamesStimacCharacter::UpdateMagic()
+{
+	// store current MagicPercentage in PreviousMagic
+	PreviousMagic = MagicPercentage;
+
+	// Update magic percentage as Magic out of FullMagic
+	MagicPercentage = Magic / FullMagic;
+
+	// set MagicValue to 1 (Since restored)
+	MagicValue = 1.0f;
+
+	// set timeline to start
+	MyTimeline.PlayFromStart();
+}
+
+/** Get Magic Text */
+FText AJamesStimacCharacter::GetMagicIntText()
+{
+	// Convert magic percentage float float to int (percent value) MP
+	int32 MP = FMath::RoundHalfFromZero(MagicPercentage * FullMagic);
+
+	// Create MP string from int MP
+	FString MPS = FString::FromInt(MP);
+
+	// Append MP string with percent sign, store in MagicHUD
+	FString MagicHUD = MPS + FString(TEXT("%"));
+
+	// Create FText element from MagicHUD string
+	FText MPText = FText::FromString(MagicHUD);
+	return MPText;
+}
+
+/**  Set Magic Value */
+void AJamesStimacCharacter::SetMagicValue()
+{
+	// Store the current playback position of MyTimeline
+	TimelineValue = MyTimeline.GetPlaybackPosition();
+
+	// Add Previous Magic value to (1.0f * Previous MagicCurve as a float value pulled from the stored playback position at call)
+	CurveFloatValue = PreviousMagic + (MagicValue * MagicCurve->GetFloatValue(TimelineValue));
+
+	// Magic is the CurveFloatValue (based on previous magic) times FullHealth value
+	Magic = CurveFloatValue * FullHealth;
+
+	// clamp magic wtihin range from 0 -> FullMagic
+	Magic = FMath::Clamp(Magic, 0.0f, FullMagic);
+
+	// set MagicPercentage equal to the CurveFloatValue
+	MagicPercentage = CurveFloatValue;
+
+	// clamp this within 0 -> 1 (float) for easy conversion to percentage
+	MagicPercentage = FMath::Clamp(MagicPercentage, 0.0f, 1.0f);
+}
+
+/** Set Magic Change*/
+void AJamesStimacCharacter::SetMagicChange(float MagicChange)
+{
+	// change bool CanUseMagic to False 
+
+	bCanUseMagic = false;
+
+	// Store Curernt Magic Percentage in PreviousMagic
+	PreviousMagic = MagicPercentage;
+
+	// MagicValue is MagicChange out of FullMagic
+	MagicValue = (MagicChange / FullMagic);
+
+	// if GunOverheatMaterial != nullptr
+	if (GunOverheatMaterial)
+	{
+		// set FP_Gun matrial to GunOverheatMaterial
+		FP_Gun->SetMaterial(0, GunOverheatMaterial);
+	}
+
+	// Set MyTimeline to play from start
+	MyTimeline.PlayFromStart();
+}
+
+
+/** Set Magic State*/
+void AJamesStimacCharacter::SetMagicState()
+{
+	// reset bool CanUseMagic
+	bCanUseMagic = true; 
+
+	// MagicValue set to 0 (since used)
+	MagicValue = 0.0;
+
+	// if GunDefaultMaterial != nullptr
+	if (GunDefaultMaterial)
+	{
+		// set FP_Gun material to GunDefaultMaterial
+		FP_Gun->SetMaterial(0, GunDefaultMaterial);
+	}
+}
+
+
+/** Play Flash */
+bool AJamesStimacCharacter::PlayFlash()
+{
+	// if bool refFlash is true
+	if (redFlash)
+	{
+		// change bool value
+		redFlash = false;
+
+		// return true
+		return true;
+	}
+	// else return false
 	return false;
 }

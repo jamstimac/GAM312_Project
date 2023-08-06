@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/TimelineComponent.h"
+#include "Components/BoxComponent.h"
 #include "JamesStimacCharacter.generated.h"
 
 class UInputComponent;
@@ -57,7 +59,117 @@ public:
 protected:
 	virtual void BeginPlay();
 
+	virtual void Tick(float DeltaTime) override;
+
+	/** HUD variables */
+	/** Health Variables*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+		float FullHealth;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+		float Health;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+		float HealthPercentage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+		float PreviousHealth;
+
+	/** Magic Variables */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Magic")
+		float FullMagic;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Magic")
+		float Magic;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Magic")
+		float MagicPercentage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Magic")
+		float PreviousMagic;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Magic")
+		float MagicValue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+		float redFlash;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Magic")
+		UCurveFloat* MagicCurve;
+
+	/** Timeline variables */
+	FTimeline MyTimeline;
+	float CurveFloatValue;
+	float TimelineValue;
+	FTimerHandle MagicTimerHandle;
+	FTimerHandle HealthTimerHandle;
+
+	bool bCanBeDamaged;
+	bool bCanUseMagic;
+
 public:
+	/** HUD Functions */
+	/** Get Health */
+	UFUNCTION(BlueprintPure, Category = "Health")
+		float GetHealth();
+
+	/** Get Magic */
+	UFUNCTION(BlueprintPure, Category = "Magic")
+		float GetMagic();
+
+	/** Update Health */
+	UFUNCTION(BlueprintCallable, Category = "Health")
+		void UpdateHealth(float HealthChange);
+
+	/** Update Magic */
+	UFUNCTION(BlueprintCallable, Category = "Magic")
+		void UpdateMagic();
+
+	/** Get Magic text */
+	UFUNCTION(BlueprintPure, Category = "Health")
+		FText GetHealthIntText();
+
+	/** Get Magic Text */
+	UFUNCTION(BlueprintPure, Category = "Magic")
+		FText GetMagicIntText();
+
+	/** Damage Timer */
+	UFUNCTION()
+		void DamageTimer();
+
+	/** runs when interacting weith an element that calls ApplyPointDamage */
+	UFUNCTION()
+		void RecievePointDamage(float Damage, const UDamageType* DamageType, FVector HitLocation, FVector HitNormal, UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, AController* InstigatedBy, AActor* DamageCauser, const FHitResult& HitInfo);
+
+	/** Set damage State */
+	UFUNCTION()
+		void SetDamageState();
+
+	/**  Set Magic Value */
+	UFUNCTION()
+		void SetMagicValue();
+
+	/** Set Magic State*/
+	UFUNCTION()
+		void SetMagicState();
+
+	/** Set Magic Change*/
+	UFUNCTION()
+		void SetMagicChange(float MagicChange);
+
+	/** Play Flash */
+	UFUNCTION(BlueprintPure, Category = "Health")
+		bool PlayFlash();
+
+	/** Materials to update gun while using */
+	UPROPERTY(EditAnywhere, Category = "Magic")
+		class UMaterialInterface* GunDefaultMaterial;
+
+	UPROPERTY(EditAnywhere, Category = "Magic")
+		class UMaterialInterface* GunOverheatMaterial;
+
+public:
+
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseTurnRate;
@@ -87,20 +199,20 @@ public:
 	uint8 bUsingMotionControllers : 1;
 
 	// herb counts will be in a matrix eventually 
-	/** How many of Worgroot are acquired **/
+	/** How many of Worgroot are acquired */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HerbCount")
 		uint8 WorgrootCount;
 
-	/** How many of Elfear are acquired **/
+	/** How many of Elfear are acquired */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HerbCount")
 		uint8 ElfsearCount;
 
-	/** How many of Hollybell are acquired **/
+	/** How many of Hollybell are acquired */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HerbCount")
 		uint8 BellhollyCount;
 
 private:
-	/*Raycast function bound to a input*/
+	/** Raycast function bound to a input */
 	void DisplayRaycast();
 
 protected:
@@ -160,6 +272,9 @@ public:
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+
+
+
 
 };
 

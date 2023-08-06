@@ -58,7 +58,11 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AJamesStimacHUD)
 
 
-#define JamesStimac_Source_JamesStimac_JamesStimacHUD_h_12_PRIVATE_PROPERTY_OFFSET
+#define JamesStimac_Source_JamesStimac_JamesStimacHUD_h_12_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__HUDWidgetClass() { return STRUCT_OFFSET(AJamesStimacHUD, HUDWidgetClass); } \
+	FORCEINLINE static uint32 __PPO__CurrentWidget() { return STRUCT_OFFSET(AJamesStimacHUD, CurrentWidget); }
+
+
 #define JamesStimac_Source_JamesStimac_JamesStimacHUD_h_9_PROLOG
 #define JamesStimac_Source_JamesStimac_JamesStimacHUD_h_12_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

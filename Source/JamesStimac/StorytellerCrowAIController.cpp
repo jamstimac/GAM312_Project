@@ -43,9 +43,8 @@ void AStorytellerCrowAIController::BeginPlay()
 	bReturnedToStart = false;
 		
 
-		OurCurrentWaypoint = Waypoints[0];
-		GoToNextWaypoint(GetNextWaypoint(OurCurrentWaypoint));
-		MoveToActor(Cast<ATargetPoint>(OurCurrentWaypoint));
+	OurCurrentWaypoint = Waypoints[0];
+	GetNextWaypoint(OurCurrentWaypoint);
 }
 
 
@@ -62,20 +61,20 @@ void AStorytellerCrowAIController::Tick(float DeltaTime)
 
 			if ((MyCharacterLocation.X - MoveAICheck1X) <= 0.f)
 			{
-				GoToNextWaypoint(GetNextWaypoint(OurCurrentWaypoint));
+				GetNextWaypoint(OurCurrentWaypoint);
 				
 			}
 			// if Character X & Y values are "past" AI movement check for waypoint 2
 			else if (((MyCharacterLocation.X - MoveAICheck2X) <= 0.f) && ((MyCharacterLocation.Y - MoveAICheck2Y) <= 0.f))
 			{
-				GoToNextWaypoint(GetNextWaypoint(OurCurrentWaypoint));
+				GetNextWaypoint(OurCurrentWaypoint);
 				
 			}
 		}
 		// FIXME:: will call immediately once both bools are set, need a sort of timer or some action to happen in between
 		else if (!bReturnedToStart)
 		{
-			GoToNextWaypoint(GetNextWaypoint(OurCurrentWaypoint));
+			GetNextWaypoint(OurCurrentWaypoint);
 			
 		}
 	}
