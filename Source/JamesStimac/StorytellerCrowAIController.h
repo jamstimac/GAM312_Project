@@ -50,4 +50,13 @@ private:
 		void GoToNextWaypoint(ATargetPoint* NextWaypoint);
 
 
+	//// Tester functions to get random waypoint 
+	//UFUNCTION()
+	//	ATargetPoint* GetRandomWaypoint();
+
+	//// Terster function to move to random waypoint
+	//UFUNCTION()
+	//	void GoToRandomWaypoint();
+
+
 };

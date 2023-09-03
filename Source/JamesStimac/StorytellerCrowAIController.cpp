@@ -27,13 +27,13 @@ void AStorytellerCrowAIController::BeginPlay()
 
 		// get all waypoints
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), ATargetPoint::StaticClass(), Waypoints);
-		uint8 i = 0;
+		uint8 totalWaypoints = 0;
 		for (auto waypoint : Waypoints)
 		{
-			i++;
-			GEngine->AddOnScreenDebugMessage(i+5, 5.f, FColor::Green, FString::Printf(TEXT("Waypoints = %.2f x %.2f y %.2f z"), waypoint->GetActorLocation().X, waypoint->GetActorLocation().Y, waypoint->GetActorLocation().Z));
+			totalWaypoints++;
+			GEngine->AddOnScreenDebugMessage(totalWaypoints+5, 5.f, FColor::Green, FString::Printf(TEXT("Waypoints = %.2f x %.2f y %.2f z"), waypoint->GetActorLocation().X, waypoint->GetActorLocation().Y, waypoint->GetActorLocation().Z));
 		}
-		GEngine->AddOnScreenDebugMessage(4, 5.f, FColor::Yellow, FString::Printf(TEXT("Total waypoints %i"), i));
+		GEngine->AddOnScreenDebugMessage(4, 5.f, FColor::Yellow, FString::Printf(TEXT("Total waypoints %i"), totalWaypoints));
 	}
 
 	// set bools for movement checks
@@ -45,6 +45,7 @@ void AStorytellerCrowAIController::BeginPlay()
 
 	OurCurrentWaypoint = Waypoints[0];
 	GoToNextWaypoint(GetNextWaypoint(OurCurrentWaypoint));
+	// GoToRandomWaypoint();
 }
 
 
@@ -158,4 +159,15 @@ void AStorytellerCrowAIController::GoToNextWaypoint(ATargetPoint* NextWaypoint)
 	// move actor to next location
 	MoveToActor(NextWaypoint);
 }
+
+//ATargetPoint* AStorytellerCrowAIController::GetRandomWaypoint()
+//{
+//	auto index = FMath::RandRange(0, Waypoints.Num() - 1);
+//	return Cast<ATargetPoint>(Waypoints[index]);
+//}
+//
+//void AStorytellerCrowAIController::GoToRandomWaypoint()
+//{
+//	MoveToActor(GetRandomWaypoint());
+//}
 
